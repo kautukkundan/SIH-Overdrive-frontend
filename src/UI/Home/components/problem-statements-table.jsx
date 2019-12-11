@@ -45,56 +45,129 @@ const ProblemStatementsTable = () => {
   return (
     <ReactTable
       data={data}
+      filterable
       columns={[
         {
           Header: <Icon name="eye" />,
-          headerStyle: { fontSize: "120%", padding: "10px" },
           accessor: "read",
           width: 40,
-          Cell: props => <Checkbox defaultChecked />
+          Cell: props => <Checkbox defaultChecked />,
+          filterable: false
         },
         {
           Header: "Logo",
-          headerStyle: { fontSize: "120%", padding: "10px" },
           accessor: "logo",
           width: 100,
-          Cell: props => <img src={props.value} alt=""/>
+          Cell: props => <img src={props.value} alt="" />,
+          filterable: false
         },
         {
           Header: "Organization",
-          headerStyle: { fontSize: "120%", padding: "10px" },
           style: { whiteSpace: "unset" },
           accessor: "organization",
-          width: 150
+          width: 150,
+          filterMethod: (filter, row) => row[filter.id].includes(filter.value)
         },
         {
           Header: "Title",
-          headerStyle: { fontSize: "120%", padding: "10px" },
           style: { whiteSpace: "unset" },
           accessor: "title"
         },
         {
           Header: "Category",
-          headerStyle: { fontSize: "120%", padding: "10px" },
           accessor: "category",
-          width: 100
+          width: 100,
+          filterMethod: (filter, row) => {
+            if (filter.value === "all") {
+              return true;
+            } else {
+              return row[filter.id].toLowerCase() === filter.value.toLowerCase();
+            }
+          },
+          Filter: ({ filter, onChange }) => (
+            <select
+              onChange={event => onChange(event.target.value)}
+              style={{ width: "100%" }}
+              value={filter ? filter.value : "all"}
+            >
+              <option value="all">all</option>
+              <option value="software">software</option>
+              <option value="hardware">hardware</option>
+            </select>
+          )
         },
         {
           Header: "Domain",
-          headerStyle: { fontSize: "120%", padding: "10px" },
           accessor: "domain",
           style: { whiteSpace: "unset" },
-          width: 100
+          width: 100,
+          filterMethod: (filter, row) => {
+            if (filter.value === "all") {
+              return true;
+            } else {
+              return row[filter.id].toLowerCase() === filter.value.toLowerCase();
+            }
+          },
+          Filter: ({ filter, onChange }) => (
+            <select
+              onChange={event => onChange(event.target.value)}
+              style={{ width: "100%" }}
+              value={filter ? filter.value : "all"}
+            >
+              <option value="all" selected>
+                All
+              </option>
+              <option value="Agriculture and Rural Development">
+                Agriculture and Rural Development
+              </option>
+              <option value="Clean Water">Clean Water</option>
+              <option value="Robotics & Drones">Robotics & Drones</option>
+              <option value="Healthcare & Biomedical Devices">
+                Healthcare & Biomedical Devices
+              </option>
+              <option value="Energy / Renewable Energy">
+                Energy / Renewable Energy
+              </option>
+              <option value="Security & Surveillance">
+                Security & Surveillance
+              </option>
+              <option value="Smart Communication">Smart Communication</option>
+              <option value="Smart Vehicles">Smart Vehicles</option>
+              <option value="Software - Mobile App development">
+                Software - Mobile App development
+              </option>
+              <option value="Miscellaneous">Miscellaneous</option>
+              <option value="Software - Web App development">
+                Software - Web App development
+              </option>
+              <option value="Travel and Tourism">Travel and Tourism</option>
+              <option value="Finance">Finance</option>
+              <option value="Life Sciences">Life Sciences</option>
+              <option value="Waste Management">Waste Management</option>
+              <option value="Food Technology">Food Technology</option>
+              <option value="Smart Education">Smart Education</option>
+              <option value="Smart Cities">Smart Cities</option>
+              <option value="Sports and Fitness">Sports and Fitness</option>
+              <option value="Smart Textiles">Smart Textiles</option>
+              <option value="Sustainable Environment">
+                Sustainable Environment
+              </option>
+            </select>
+          )
         },
         {
           Header: "Status",
-          headerStyle: { fontSize: "120%", padding: "10px" },
           accessor: "status",
           width: 120,
+          filterable: false,
           Cell: props => (
             <div>
               <Form.Field>
-                <Radio label="Rejected" name={`radio-${props.original.id}`} value="rejected" />
+                <Radio
+                  label="Rejected"
+                  name={`radio-${props.original.id}`}
+                  value="rejected"
+                />
               </Form.Field>
               <Form.Field>
                 <Radio
@@ -104,7 +177,11 @@ const ProblemStatementsTable = () => {
                 />
               </Form.Field>
               <Form.Field>
-                <Radio label="Selected" name={`radio-${props.original.id}`} value="Selected" />
+                <Radio
+                  label="Selected"
+                  name={`radio-${props.original.id}`}
+                  value="Selected"
+                />
               </Form.Field>
             </div>
           )
@@ -112,7 +189,7 @@ const ProblemStatementsTable = () => {
       ]}
       className="-striped -highlight"
       resizable={false}
-      pageSize={4}
+      pageSize={50}
       style={{
         maxHeight: "85vh"
       }}
