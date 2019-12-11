@@ -17,7 +17,7 @@ const LoginBox = () => {
       <Form>
         <Form.Field>
           <label>Email</label>
-          <input />
+          <input type="email" />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
@@ -26,7 +26,7 @@ const LoginBox = () => {
         <Button type="submit" floated="right" color="linkedin">
           Login
         </Button>
-        <NewUserModal newUser={newUser}/>
+        <NewUserModal newUser={newUser} />
       </Form>
     </div>
   );

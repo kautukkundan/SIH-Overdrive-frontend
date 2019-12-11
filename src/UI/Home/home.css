@@ -1,0 +1,80 @@
+.home-body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.home-body > .left {
+  width: 75vw;
+}
+
+.home-body > .right {
+  background: #064356;
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.home-body > .right > .top {
+  flex-grow: 1;
+}
+
+.info {
+  display: flex;
+  height: 70px;
+  padding: 10px;
+  color: white;
+}
+
+.user-info {
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info > .text {
+  flex-grow: 1;
+}
+
+.user-info > .text > .name {
+  font-size: 20px;
+}
+
+.user-info > .avatar {
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.team-info > .team {
+  font-size: 180%;
+}
+
+.team-member-info {
+  padding: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
+.team-member-info > .title {
+  font-size: 120%;
+}
+
+.team-member {
+  display: flex;
+  margin: 15px 0;
+}
+
+.team-member > .id {
+  font-size: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+}
+
+.team-member > * > .name {
+  font-size: 150%;
+  line-height: 120%;
+}
+
+.team-member > * > .email {
+  opacity: 0.5;
+}

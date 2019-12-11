@@ -5,6 +5,7 @@ import { StoreProvider, createStore } from "easy-peasy";
 import globalStore from "./globalStore";
 
 import Login from "./UI/Login/login";
+import Home from "./UI/Home/home";
 
 const store = createStore(globalStore);
 
@@ -12,21 +13,19 @@ function App() {
   return (
     <StoreProvider store={store}>
       <BrowserRouter>
-
         <Switch>
           <Route path="/login">
-            <Login/>
+            <Login />
           </Route>
         </Switch>
 
         <Switch>
           <Route path="/home">
-            <p>Home</p>
+            <Home />
           </Route>
         </Switch>
 
         {/* <Redirect path="/" to="/login" exact /> */}
-        
       </BrowserRouter>
     </StoreProvider>
   );
