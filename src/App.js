@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+
+import { StoreProvider, createStore } from "easy-peasy";
+import globalStore from "./globalStore";
+
+import Login from "./UI/Login/login";
+
+const store = createStore(globalStore);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider store={store}>
+      <BrowserRouter>
+
+        <Switch>
+          <Route path="/login">
+            <Login/>
+          </Route>
+        </Switch>
+
+        <Switch>
+          <Route path="/home">
+            <p>Home</p>
+          </Route>
+        </Switch>
+
+        {/* <Redirect path="/" to="/login" exact /> */}
+        
+      </BrowserRouter>
+    </StoreProvider>
   );
 }
 
