@@ -7,7 +7,7 @@ import { Icon, Checkbox, Form, Radio } from "semantic-ui-react";
 const data = [
   {
     id: 1,
-    logo: "https://www.sih.gov.in/uploads/logo/20191014173647.png",
+    logo: "https://www.sih.gov.in/uploads/logo/no_image.png",
     organization: "CDK Global",
     title:
       "Better and faster emergency care during accidents and vehicle impact.",
@@ -60,7 +60,7 @@ const ProblemStatementsTable = () => {
           Header: "Logo",
           accessor: "logo",
           width: 100,
-          Cell: props => <img src={props.value} alt="" />,
+          Cell: props => <img src={props.value} height="50px" alt="" />,
           filterable: false
         },
         {
@@ -203,7 +203,7 @@ const ProblemStatementsTable = () => {
       resizable={false}
       pageSize={50}
       style={{
-        maxHeight: "85vh"
+        maxHeight: "86vh"
       }}
     />
   );
