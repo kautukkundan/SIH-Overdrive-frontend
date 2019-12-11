@@ -1,5 +1,4 @@
 import React from "react";
-import UserInfo from "./user-info";
 import { Label } from "semantic-ui-react";
 
 const TeamMemberInfo = () => {

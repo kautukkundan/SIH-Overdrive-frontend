@@ -5,12 +5,13 @@
 }
 
 .home-body > .left {
-  width: 75vw;
+  width: 80vw;
+  padding: 30px;
 }
 
 .home-body > .right {
   background: #064356;
-  width: 25vw;
+  width: 20vw;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -37,16 +38,21 @@
 }
 
 .user-info > .text > .name {
-  font-size: 20px;
+  font-size: 17px;
+  line-height: 17px;
+}
+
+.user-info > .text > .email {
+  font-size: 13px;
 }
 
 .user-info > .avatar {
-  font-size: 30px;
-  line-height: 30px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .team-info > .team {
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .team-member-info {
@@ -56,7 +62,7 @@
 }
 
 .team-member-info > .title {
-  font-size: 120%;
+  font-size: 110%;
 }
 
 .team-member {
@@ -65,14 +71,13 @@
 }
 
 .team-member > .id {
-  font-size: 30px;
-  line-height: 30px;
-  padding: 0 10px;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 0 7px;
 }
 
 .team-member > * > .name {
-  font-size: 150%;
-  line-height: 120%;
+  font-size: 130%;
 }
 
 .team-member > * > .email {

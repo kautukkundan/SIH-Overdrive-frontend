@@ -12,3 +12,24 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.ui.red.button {
+  background: #ed553b !important;
+  padding: 0 !important;
+}
+
+.ui.yellow.button {
+  background: #FFC300 !important;
+}
+
+.ui.green.button {
+  background: #028154 !important;
+}
+
+.ui.blue.button {
+  background: #173f5f !important;
+}
+
+.ui.teal.button {
+  background: #20639b !important;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { StoreProvider, createStore } from "easy-peasy";
 import globalStore from "./globalStore";
@@ -25,7 +25,6 @@ function App() {
           </Route>
         </Switch>
 
-        {/* <Redirect path="/" to="/login" exact /> */}
       </BrowserRouter>
     </StoreProvider>
   );
