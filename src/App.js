@@ -6,7 +6,6 @@ import globalStore from "./globalStore";
 
 import Login from "./UI/Login/login";
 import Home from "./UI/Home/home";
-import ProblemStatementDetail from "./UI/ProblemStatement/problem-statement-detail";
 
 const store = createStore(globalStore);
 
@@ -15,8 +14,7 @@ function App() {
     <StoreProvider store={store}>
       <BrowserRouter>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/problem/:id" component={ProblemStatementDetail} />
+        <Route path="/" component={Home} />
       </BrowserRouter>
     </StoreProvider>
   );

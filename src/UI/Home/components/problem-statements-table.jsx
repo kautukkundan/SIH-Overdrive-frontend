@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import { Icon, Checkbox, Form, Radio } from "semantic-ui-react";
@@ -36,12 +37,13 @@ const data = [
     logo: "https://www.sih.gov.in/uploads/logo/20191014173647.png",
     organization: "CDK Global",
     title: "Portal for Farmers to sell the produce at a better rate",
-    category: "Software",
+    category: "Hardware",
     domain: "Agriculture and Rural Development"
   }
 ];
 
 const ProblemStatementsTable = () => {
+  let history = useHistory();
   return (
     <ReactTable
       data={data}
@@ -66,12 +68,16 @@ const ProblemStatementsTable = () => {
           style: { whiteSpace: "unset" },
           accessor: "organization",
           width: 150,
-          filterMethod: (filter, row) => row[filter.id].includes(filter.value)
+          filterMethod: (filter, row) =>
+            row[filter.id].toLowerCase().includes(filter.value.toLowerCase())
         },
         {
           Header: "Title",
-          style: { whiteSpace: "unset" },
-          accessor: "title"
+          style: { whiteSpace: "unset", cursor: "pointer" },
+          accessor: "title",
+          filterMethod: (filter, row) =>
+            row[filter.id].toLowerCase().includes(filter.value.toLowerCase()),
+          Cell: props => <span onClick={() => history.push(`problem/${props.original.id}`)}>{props.value}</span>
         },
         {
           Header: "Category",
@@ -81,7 +87,9 @@ const ProblemStatementsTable = () => {
             if (filter.value === "all") {
               return true;
             } else {
-              return row[filter.id].toLowerCase() === filter.value.toLowerCase();
+              return (
+                row[filter.id].toLowerCase() === filter.value.toLowerCase()
+              );
             }
           },
           Filter: ({ filter, onChange }) => (
@@ -90,7 +98,9 @@ const ProblemStatementsTable = () => {
               style={{ width: "100%" }}
               value={filter ? filter.value : "all"}
             >
-              <option value="all">all</option>
+              <option value="all" defaultValue>
+                all
+              </option>
               <option value="software">software</option>
               <option value="hardware">hardware</option>
             </select>
@@ -105,7 +115,9 @@ const ProblemStatementsTable = () => {
             if (filter.value === "all") {
               return true;
             } else {
-              return row[filter.id].toLowerCase() === filter.value.toLowerCase();
+              return (
+                row[filter.id].toLowerCase() === filter.value.toLowerCase()
+              );
             }
           },
           Filter: ({ filter, onChange }) => (
@@ -114,8 +126,8 @@ const ProblemStatementsTable = () => {
               style={{ width: "100%" }}
               value={filter ? filter.value : "all"}
             >
-              <option value="all" selected>
-                All
+              <option value="all" defaultValue>
+                all
               </option>
               <option value="Agriculture and Rural Development">
                 Agriculture and Rural Development

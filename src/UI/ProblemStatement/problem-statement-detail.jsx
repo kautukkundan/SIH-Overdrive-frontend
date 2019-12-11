@@ -1,18 +1,9 @@
 import React from "react";
+import { useParams } from "react-router";
 
 const ProblemStatementDetail = ({ match, location }) => {
-  return (
-    <div>
-      <p>
-        <strong>Match Props: </strong>
-        <code>{JSON.stringify(match.params.id, null, 2)}</code>
-      </p>
-      <p>
-        <strong>Location Props: </strong>
-        <code>{JSON.stringify(location, null, 2)}</code>
-      </p>
-    </div>
-  );
+  let { id } = useParams();
+  return <div>{id}</div>;
 };
 
 export default ProblemStatementDetail;
