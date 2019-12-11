@@ -17,18 +17,31 @@ const Login = () => {
             />
           </a>
         </div>
-        <div className="app-title">SIH Overdrive <Icon name="dashboard"/></div>
+        <div className="app-title">
+          SIH Overdrive <Icon name="dashboard" />
+        </div>
+        <span style={{ color: "white", fontSize: "150%", lineHeight:"160%" }}>
+          Team discussions Made Simpler
+        </span>
       </div>
       <div className="left">
         <div className="title" style={{ fontSize: "150%" }}>
-          SIH Discussions Made Simple 
+          IDEATE &nbsp;|&nbsp; SHARE &nbsp;|&nbsp; COLLABORATE
         </div>
         <div className="login-box">
+          <div className="information">
+            <h4>How it works?</h4>
+            <p>1. Sign-up and create a team</p>
+            <p>2. Invite Team Mates</p>
+            <p>
+              3. Collaborate over Problem statements, Create Notes, Share Ideas
+            </p>
+          </div>
           <LoginBox />
         </div>
         <div className="footer">
-          Made with <Icon name="heart"/>by{" "}
-          <a href="https://github.com/GauravJain98">Gaurav Jain</a> &{" "}
+          Made with <Icon name="heart" />
+          by <a href="https://github.com/GauravJain98">Gaurav Jain</a> &{" "}
           <a href="https://github.com/kautukkundan">Kautuk Kundan</a>
         </div>
       </div>
