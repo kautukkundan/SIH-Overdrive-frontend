@@ -1,5 +1,6 @@
 import React from "react";
 import { Label } from "semantic-ui-react";
+import AddMember from "./add-member";
 
 const TeamMemberInfo = () => {
   return (
@@ -50,13 +51,7 @@ const TeamMemberInfo = () => {
         </div>
       </div>
 
-      <div className="team-member">
-        <div className="id">+</div>
-        <div>
-          <div className="name">Add Member</div>
-          <div className="email">Invite a Member through email</div>
-        </div>
-      </div>
+      <AddMember />
     </div>
   );
 };

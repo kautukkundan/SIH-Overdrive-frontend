@@ -84,3 +84,15 @@
 .team-member > * > .email {
   opacity: 0.5;
 }
+
+.add-team:hover {
+  cursor: pointer;
+}
+
+.add-team:hover > .id {
+  color: #fcbc0b;
+}
+
+.add-team:hover > * > .name {
+  color: #fcbc0b;
+}
