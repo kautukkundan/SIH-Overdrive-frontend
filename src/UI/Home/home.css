@@ -27,6 +27,7 @@
   height: 70px;
   padding: 10px;
   color: white;
+  cursor: pointer;
 }
 
 .user-info {

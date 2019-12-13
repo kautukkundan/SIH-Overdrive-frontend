@@ -9,6 +9,8 @@ import FilterGroup from "./components/filter-group";
 import ProblemStatementsTable from "./components/problem-statements-table";
 import ProblemStatementDetail from "../ProblemStatement/problem-statement-detail";
 import JoinTeam from "./components/join-team";
+import Notifications from "../Notifications/notifications";
+import { Icon } from "semantic-ui-react";
 
 const Home = () => {
   return (
@@ -20,7 +22,6 @@ const Home = () => {
         </div>
         <div className="footer">
           <JoinTeam />
-          <br />
           <UserInfo />
         </div>
       </div>
@@ -33,6 +34,8 @@ const Home = () => {
         </Route>
 
         <Route exact path="/problem/:id" component={ProblemStatementDetail} />
+
+        <Route exact path="/notifications" component={Notifications} />
       </div>
     </div>
   );

@@ -1,0 +1,41 @@
+.notifications-body > .title {
+  font-size: 180%;
+}
+
+.all-notifications {
+  margin: 20px 0;
+}
+
+.notification {
+  width: 100%;
+  background: rgb(245, 245, 245);
+  border-radius: 5px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.notification > .info {
+  flex-grow: 1;
+  display: block;
+  color: black;
+}
+
+.notification > .info > .name {
+  font-size: 150%;
+  margin-right: 10px;
+  line-height: 150%;
+}
+
+.notification > .info > .email {
+  font-size: 150%;
+  margin-right: 10px;
+  line-height: 150%;
+  opacity: 0.5;
+}
+
+.notification > .info > .message {
+  display: block;
+  font-size: 120%;
+}
