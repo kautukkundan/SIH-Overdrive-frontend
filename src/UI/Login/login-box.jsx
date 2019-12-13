@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Form, Button } from "semantic-ui-react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Form, Button, Dimmer, Loader } from "semantic-ui-react";
 import NewUserModal from "./new-user-modal";
 import swal from "sweetalert";
 
 const LoginBox = () => {
-  const [newUser, setNewUser] = useState(false);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const history = useHistory();
 
   const handleSubmit = () => {
     if (email.match(`[a-zA-Z0-9]+@[a-z]+.(com|in|net|org|edu)`) === null) {
@@ -23,16 +24,9 @@ const LoginBox = () => {
         "error"
       );
     } else {
-      console.log("Done");
+      history.push("/");
     }
   };
-
-  useEffect(() => {
-    const p = new URL(document.location).searchParams.get("newuser");
-    if (p !== null) {
-      setNewUser(true);
-    }
-  }, []);
 
   return (
     <div>
@@ -61,7 +55,7 @@ const LoginBox = () => {
         >
           Login
         </Button>
-        <NewUserModal newUser={newUser} />
+        <NewUserModal />
       </Form>
     </div>
   );

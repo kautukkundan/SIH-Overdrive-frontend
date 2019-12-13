@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Form, Button, Select } from "semantic-ui-react";
 import swal from "sweetalert";
 
-const NewUserModal = props => {
+const NewUserModal = () => {
   const [open, setOpen] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -24,13 +24,18 @@ const NewUserModal = props => {
     } else if (password !== repassword) {
       swal("Password Mismatch", "Passwords Don't Match", "error");
     } else {
-      console.log("done");
+      swal("Account Created", "Login to Continue.", "success").then(
+        setOpen(false)
+      );
     }
   };
 
   useEffect(() => {
-    setOpen(props.newUser);
-  }, [props]);
+    const p = new URL(document.location).searchParams.get("newuser");
+    if (p !== null) {
+      setOpen(true);
+    }
+  }, []);
 
   return (
     <Modal
