@@ -97,3 +97,8 @@
 .add-team:hover > * > .name {
   color: #fcbc0b;
 }
+
+.title-hover:hover {
+  color: #116adf;
+  font-weight: bold;
+}

@@ -77,7 +77,14 @@ const ProblemStatementsTable = () => {
           accessor: "title",
           filterMethod: (filter, row) =>
             row[filter.id].toLowerCase().includes(filter.value.toLowerCase()),
-          Cell: props => <span onClick={() => history.push(`problem/${props.original.id}`)}>{props.value}</span>
+          Cell: props => (
+            <span
+              className="title-hover"
+              onClick={() => history.push(`problem/${props.original.id}`)}
+            >
+              {props.value}
+            </span>
+          )
         },
         {
           Header: "Category",
