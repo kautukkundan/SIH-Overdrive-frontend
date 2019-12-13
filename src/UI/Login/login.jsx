@@ -20,7 +20,7 @@ const Login = () => {
         <div className="app-title">
           SIH Overdrive <Icon name="dashboard" />
         </div>
-        <span style={{ color: "white", fontSize: "150%", lineHeight:"160%" }}>
+        <span style={{ color: "white", fontSize: "150%", lineHeight: "160%" }}>
           Team discussions Made Simpler
         </span>
       </div>

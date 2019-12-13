@@ -1,5 +1,5 @@
 import React from "react";
-import { Feed, Input, Button, Icon } from "semantic-ui-react";
+import { Feed, Input } from "semantic-ui-react";
 
 const MyFeed = () => {
   return (
@@ -8,7 +8,7 @@ const MyFeed = () => {
         <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/justen.jpg" />
         <Feed.Content>
           <Feed.Summary>
-            <a>Kautuk Kundan</a>
+            <a href="">Kautuk Kundan</a>
             <Feed.Date>3 days ago</Feed.Date>
           </Feed.Summary>
           <Feed.Extra text>
@@ -24,7 +24,7 @@ const MyFeed = () => {
         <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/joe.jpg" />
         <Feed.Content>
           <Feed.Summary>
-            <a>Bipin Lala</a>
+            <a href="">Bipin Lala</a>
             <Feed.Date>5 days ago</Feed.Date>
           </Feed.Summary>
           <Feed.Extra text>
@@ -40,7 +40,7 @@ const MyFeed = () => {
         <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/helen.jpg" />
         <Feed.Content>
           <Feed.Summary>
-            <a>Aashita Arora</a>
+            <a href="">Aashita Arora</a>
             <Feed.Date>5 days ago</Feed.Date>
           </Feed.Summary>
           <Feed.Extra text>
@@ -53,7 +53,11 @@ const MyFeed = () => {
       </Feed.Event>
 
       <br />
-      <Input action={{ icon: 'caret right' }} placeholder='Add Comment...' style={{width: "550px"}}/>
+      <Input
+        action={{ icon: "caret right" }}
+        placeholder="Add Comment..."
+        style={{ width: "550px" }}
+      />
     </Feed>
   );
 };
