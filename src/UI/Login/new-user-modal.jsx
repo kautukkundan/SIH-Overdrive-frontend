@@ -24,9 +24,8 @@ const NewUserModal = () => {
     } else if (password !== repassword) {
       swal("Password Mismatch", "Passwords Don't Match", "error");
     } else {
-      swal("Account Created", "Login to Continue.", "success").then(
-        setOpen(false)
-      );
+      swal("Account Created", "Login to Continue.", "success");
+      setOpen(false);
     }
   };
 

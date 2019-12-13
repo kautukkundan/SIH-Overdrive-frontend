@@ -4,11 +4,11 @@ import { Route } from "react-router-dom";
 import "./home.css";
 import UserInfo from "./components/user-info";
 import TeamInfo from "./components/team-info";
-import { Button } from "semantic-ui-react";
 import TeamMemberInfo from "./components/team-member-info";
 import FilterGroup from "./components/filter-group";
 import ProblemStatementsTable from "./components/problem-statements-table";
 import ProblemStatementDetail from "../ProblemStatement/problem-statement-detail";
+import JoinTeam from "./components/join-team";
 
 const Home = () => {
   return (
@@ -19,9 +19,7 @@ const Home = () => {
           <TeamMemberInfo />
         </div>
         <div className="footer">
-          <Button fluid inverted>
-            + Join New team
-          </Button>
+          <JoinTeam />
           <br />
           <UserInfo />
         </div>
