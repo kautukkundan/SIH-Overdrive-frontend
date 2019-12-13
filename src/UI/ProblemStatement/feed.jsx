@@ -1,5 +1,5 @@
 import React from "react";
-import { Feed, Input } from "semantic-ui-react";
+import { Feed, Input, Button, Icon } from "semantic-ui-react";
 
 const MyFeed = () => {
   return (
@@ -53,7 +53,7 @@ const MyFeed = () => {
       </Feed.Event>
 
       <br />
-      <Input placeholder="Add Comment"></Input>
+      <Input action={{ icon: 'caret right' }} placeholder='Add Comment...' style={{width: "550px"}}/>
     </Feed>
   );
 };

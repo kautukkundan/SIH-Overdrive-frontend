@@ -28,7 +28,7 @@ const Home = () => {
       </div>
 
       <div className="left">
-        <Route exact path="/all">
+        <Route exact path="/">
           <FilterGroup />
           <br />
           <ProblemStatementsTable />
