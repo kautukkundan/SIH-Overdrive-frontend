@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 import "./home.css";
 import UserInfo from "./components/user-info";
@@ -13,8 +13,18 @@ import Notifications from "../Notifications/notifications";
 import NotFound from "../NotFound/notfound";
 import CreateTeam from "./components/create-team";
 import { Button } from "semantic-ui-react";
+import { isLoggedIn } from "../../services/authService";
 
 const Home = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    const loggedin = isLoggedIn();
+    if (!loggedin) {
+      history.push("/login");
+    }
+  }, [history]);
+
   return (
     <div className="home-body">
       <div className="right">

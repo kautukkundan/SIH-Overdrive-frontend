@@ -9,7 +9,7 @@ const MyFeed = () => {
         <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/justen.jpg" />
         <Feed.Content>
           <Feed.Summary>
-            <a href="">Kautuk Kundan</a>
+            <a href=" ">Kautuk Kundan</a>
             <Feed.Date>3 days ago</Feed.Date>
           </Feed.Summary>
           <Feed.Extra text>
@@ -25,7 +25,7 @@ const MyFeed = () => {
         <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/joe.jpg" />
         <Feed.Content>
           <Feed.Summary>
-            <a href="">Bipin Lala</a>
+            <a href=" ">Bipin Lala</a>
             <Feed.Date>5 days ago</Feed.Date>
           </Feed.Summary>
           <Feed.Extra text>
@@ -41,7 +41,7 @@ const MyFeed = () => {
         <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/helen.jpg" />
         <Feed.Content>
           <Feed.Summary>
-            <a href="">Aashita Arora</a>
+            <a href=" ">Aashita Arora</a>
             <Feed.Date>5 days ago</Feed.Date>
           </Feed.Summary>
           <Feed.Extra text>

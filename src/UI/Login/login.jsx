@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./login.css";
+
+import { useHistory } from "react-router-dom";
+import { isLoggedIn } from "../../services/authService";
 
 import LoginBox from "./login-box";
 import { Icon } from "semantic-ui-react";
 
 const Login = () => {
+  const history = useHistory();
+  useEffect(() => {
+    const loggedin = isLoggedIn();
+    if (loggedin) {
+      history.push("/");
+    }
+  }, []);
+
   return (
     <div className="login-body">
       <div className="right">

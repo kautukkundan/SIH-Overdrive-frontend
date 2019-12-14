@@ -12,7 +12,7 @@ const LoginBox = () => {
 
   const history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (email.match(`[a-zA-Z0-9]+@[a-z]+.(com|in|net|org|edu)`) === null) {
       swal(
         "Invalid Email",
@@ -26,8 +26,14 @@ const LoginBox = () => {
         "error"
       );
     } else {
-      login(email, password);
-      history.push("/");
+      const status = await login(email, password);
+      if (status === 200) {
+        history.push("/");
+      } else if (status === 400) {
+        swal("Error", "Email or Password seems incorrect!", "error");
+      } else {
+        swal("Oops!", "Something went wrong! Please Retry", "error");
+      }
     }
   };
 
