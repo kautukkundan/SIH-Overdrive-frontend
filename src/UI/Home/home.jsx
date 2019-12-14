@@ -10,7 +10,6 @@ import ProblemStatementsTable from "./components/problem-statements-table";
 import ProblemStatementDetail from "../ProblemStatement/problem-statement-detail";
 import JoinTeam from "./components/join-team";
 import Notifications from "../Notifications/notifications";
-import { Icon } from "semantic-ui-react";
 
 const Home = () => {
   return (

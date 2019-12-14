@@ -1,6 +1,7 @@
 import React from "react";
-import { Icon, Popup, Button, Feed } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
+
+import { Popup, Button } from "semantic-ui-react";
 
 const UserInfo = () => {
   const history = useHistory();

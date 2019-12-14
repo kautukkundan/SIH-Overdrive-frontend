@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Feed, Input } from "semantic-ui-react";
 
 const MyFeed = () => {

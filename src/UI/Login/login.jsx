@@ -1,7 +1,8 @@
 import React from "react";
 import "./login.css";
-import LoginBox from "./login-box";
 import { Icon } from "semantic-ui-react";
+
+import LoginBox from "./login-box";
 
 const Login = () => {
   return (

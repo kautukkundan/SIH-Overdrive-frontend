@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Form, Button, Select } from "semantic-ui-react";
 import swal from "sweetalert";
+
+import { Modal, Form, Button, Select } from "semantic-ui-react";
 
 const NewUserModal = () => {
   const [open, setOpen] = useState(false);

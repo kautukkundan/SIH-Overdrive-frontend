@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
 import swal from "sweetalert";
+
+import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
 
 const AddMember = () => {
   const [memberEmail, setMemberEmail] = useState("");

@@ -1,6 +1,7 @@
 import React from "react";
-import { useParams } from "react-router";
 import "./details.css";
+import { useParams } from "react-router";
+
 import { Label } from "semantic-ui-react";
 import File from "./file";
 import MyFeed from "./feed";

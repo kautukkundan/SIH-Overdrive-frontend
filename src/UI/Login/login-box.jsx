@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Button, Dimmer, Loader } from "semantic-ui-react";
-import NewUserModal from "./new-user-modal";
 import swal from "sweetalert";
+
+import { Form, Button } from "semantic-ui-react";
+import NewUserModal from "./new-user-modal";
 
 const LoginBox = () => {
   const [email, setEmail] = useState("");

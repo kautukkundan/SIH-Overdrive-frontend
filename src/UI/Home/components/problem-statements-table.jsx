@@ -1,7 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+
 import { Icon, Checkbox, Form, Radio } from "semantic-ui-react";
 
 const data = [
