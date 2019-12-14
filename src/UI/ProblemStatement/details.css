@@ -6,6 +6,15 @@
   align-items: center;
 }
 
+.meta > .text {
+  display: flex;
+}
+
+.meta > .text > .nav {
+  display: flex;
+  cursor: pointer;
+}
+
 .meta > .text > .org {
   font-size: 30px;
   line-height: 30px;

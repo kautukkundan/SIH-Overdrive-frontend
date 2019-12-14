@@ -1,13 +1,25 @@
 import React from "react";
 import "./details.css";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 
-import { Label } from "semantic-ui-react";
+import { Label, Icon, Popup } from "semantic-ui-react";
 import File from "./file";
 import MyFeed from "./feed";
 
 const ProblemStatementDetail = ({ match, location }) => {
   let { id } = useParams();
+  const history = useHistory();
+
+  const changeProblem = to => {
+    if (to === "next") {
+      history.push(`/problem/${parseInt(id) + 1}`);
+    } else if (to === "prev" && id > 1) {
+      history.push(`/problem/${parseInt(id) - 1}`);
+    } else {
+      return;
+    }
+  };
+
   return (
     <div className="problem-statement-details-body">
       <div className="meta">
@@ -21,6 +33,36 @@ const ProblemStatementDetail = ({ match, location }) => {
           <div className="org">
             Department of Empowerment of Persons with Disabilities, Ministry of
             Social Justice and Empowerment
+          </div>
+          <div className="nav">
+            <Popup
+              position="bottom center"
+              popperModifiers={{
+                preventOverflow: { boundariesElement: "window" }
+              }}
+              content="Previous"
+              trigger={
+                <Icon
+                  name="caret left"
+                  size="big"
+                  onClick={() => changeProblem("prev")}
+                />
+              }
+            />
+            <Popup
+              position="bottom center"
+              popperModifiers={{
+                preventOverflow: { boundariesElement: "window" }
+              }}
+              content="Next"
+              trigger={
+                <Icon
+                  name="caret right"
+                  size="big"
+                  onClick={() => changeProblem("next")}
+                />
+              }
+            />
           </div>
         </div>
       </div>
