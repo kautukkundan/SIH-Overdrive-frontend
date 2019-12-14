@@ -1,3 +1,4 @@
 export default {
-  LOGIN_URL: "/login/"
+  LOGIN: "/login/",
+  NEW_USER: "/register/"
 };

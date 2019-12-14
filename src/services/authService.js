@@ -14,7 +14,7 @@ const isLoggedIn = () => {
 
 const login = async (username, password) => {
   const response = await http
-    .post(APIURL.LOGIN_URL, {
+    .post(APIURL.LOGIN, {
       username: username,
       password: password
     })
@@ -33,4 +33,24 @@ const logout = () => {
   cookie.remove("userAuthTokenSIH", { path: "/" });
 };
 
-export { login, logout, isLoggedIn };
+const registerNewUser = async (fname, lname, gender, emailid, password) => {
+  const response = await http
+    .post(APIURL.NEW_USER, {
+      user: {
+        email: emailid,
+        username: emailid,
+        password: password,
+        first_name: fname,
+        last_name: lname
+      },
+      gender: gender
+    })
+    .catch(error => {
+      if (error.response) {
+        return error.response;
+      }
+    });
+  return response.status;
+};
+
+export { login, logout, isLoggedIn, registerNewUser };

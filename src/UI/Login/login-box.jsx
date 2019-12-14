@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
 
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Dimmer, Loader } from "semantic-ui-react";
 import NewUserModal from "./new-user-modal";
 import { login } from "../../services/authService";
 
 const LoginBox = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
 
@@ -26,7 +28,9 @@ const LoginBox = () => {
         "error"
       );
     } else {
+      setLoading(true);
       const status = await login(email, password);
+      setLoading(false);
       if (status === 200) {
         history.push("/");
       } else if (status === 400) {
@@ -39,11 +43,14 @@ const LoginBox = () => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Dimmer active={loading}>
+        <Loader />
+      </Dimmer>
+      <Form>
         <Form.Field>
           <label>Email</label>
           <input
-            // type="email"
+            type="email"
             onChange={e => setEmail(e.target.value)}
             placeholder="eg : joe@gmail.com"
           />
@@ -56,7 +63,7 @@ const LoginBox = () => {
             placeholder="Min. 8 Characters"
           />
         </Form.Field>
-        <Button type="submit" floated="right" color="linkedin">
+        <Button floated="right" color="linkedin" onClick={handleSubmit}>
           Login
         </Button>
         <NewUserModal />

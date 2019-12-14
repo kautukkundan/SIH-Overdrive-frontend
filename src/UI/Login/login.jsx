@@ -14,7 +14,7 @@ const Login = () => {
     if (loggedin) {
       history.push("/");
     }
-  }, []);
+  }, [history]);
 
   return (
     <div className="login-body">
