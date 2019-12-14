@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { Popup, Button } from "semantic-ui-react";
+import { Popup, Button, Label, Icon } from "semantic-ui-react";
 
 const UserInfo = () => {
   const history = useHistory();
@@ -11,7 +11,12 @@ const UserInfo = () => {
       trigger={
         <div className="info user-info">
           <div className="text">
-            <div className="name">Kautuk Kundan</div>
+            <div className="name">
+              Kautuk Kundan &nbsp;&nbsp;
+              <Label color="red" circular style={{ display: "" }}>
+                <Icon name="bell" />7
+              </Label>
+            </div>
             <div className="email">kautukkundan@gmail.com</div>
           </div>
           <div className="avatar">
@@ -27,7 +32,7 @@ const UserInfo = () => {
       }
       content={
         <div style={{ width: "250px", textAlign: "center" }}>
-          <Button fluid size="small" color="teal" content="Sign-Out" />
+          <Button fluid size="small" color="teal" content="Sign-Out"></Button>
           <br />
           <Button
             fluid

@@ -33,6 +33,7 @@
 .user-info {
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .user-info > .text {
@@ -42,6 +43,8 @@
 .user-info > .text > .name {
   font-size: 17px;
   line-height: 17px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .user-info > .text > .email {
@@ -99,7 +102,7 @@
 }
 
 .title-hover:hover {
-  color: #1F70BF;
+  color: #1f70bf;
   font-weight: bold;
 }
 
