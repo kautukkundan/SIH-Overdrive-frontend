@@ -99,6 +99,16 @@
 }
 
 .title-hover:hover {
-  color: #116adf;
+  color: #1F70BF;
   font-weight: bold;
+}
+
+.avatar-image {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat;
+  border-radius: 50%;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Popup, Button } from "semantic-ui-react";
+import { Icon, Popup, Button, Feed } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
 const UserInfo = () => {
@@ -14,7 +14,13 @@ const UserInfo = () => {
             <div className="email">kautukkundan@gmail.com</div>
           </div>
           <div className="avatar">
-            <Icon name="user" />
+            <div
+              className="avatar-image"
+              style={{
+                background:
+                  "url('https://react.semantic-ui.com/images/avatar/small/laura.jpg')"
+              }}
+            ></div>
           </div>
         </div>
       }
