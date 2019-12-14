@@ -2,9 +2,13 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import { Popup, Button, Label, Icon } from "semantic-ui-react";
+import { useStoreState } from "easy-peasy";
 
 const UserInfo = () => {
   const history = useHistory();
+
+  const user = useStoreState(store => store.user);
+
   return (
     <Popup
       inverted
@@ -12,19 +16,18 @@ const UserInfo = () => {
         <div className="info user-info">
           <div className="text">
             <div className="name">
-              Kautuk Kundan &nbsp;&nbsp;
+              {user.firstname} {user.lastname} &nbsp;&nbsp;
               <Label color="red" circular style={{ display: "" }}>
                 <Icon name="bell" />7
               </Label>
             </div>
-            <div className="email">kautukkundan@gmail.com</div>
+            <div className="email">{user.email}</div>
           </div>
           <div className="avatar">
             <div
               className="avatar-image"
               style={{
-                background:
-                  "url('https://react.semantic-ui.com/images/avatar/small/laura.jpg')"
+                background: `url('https://react.semantic-ui.com/images/avatar/small/${user.avatar}.jpg')`
               }}
             ></div>
           </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { StoreProvider, createStore } from "easy-peasy";
-import globalStore from "./globalStore";
+import globalStore from "./stores/globalStore";
 
 import Login from "./UI/Login/login";
 import Logout from "./UI/Login/logout";

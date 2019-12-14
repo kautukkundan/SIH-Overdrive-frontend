@@ -1,30 +1,30 @@
 const M = [
-  "chris",
-  "christian",
-  "daniel",
-  "elliot",
-  "joe",
-  "justen",
-  "mark",
-  "matt",
-  "matthew",
-  "nom",
-  "steve",
-  "stevie",
-  "tom"
+  "chris.jpg",
+  "christian.jpg",
+  "daniel.jpg",
+  "elliot.jpg",
+  "joe.jpg",
+  "justen.jpg",
+  "mark.png",
+  "matt.png",
+  "matthew.png",
+  "nom.jpg",
+  "steve.jpg",
+  "stevie.jpg",
+  "tom.jpg"
 ];
 const F = [
-  "ade",
-  "helen",
-  "jenny",
-  "laura",
-  "lena",
-  "lindsay",
-  "molly",
-  "nan",
-  "rachel",
-  "veronika",
-  "zoe"
+  "ade.jpg",
+  "helen.jpg",
+  "jenny.jpg",
+  "laura.jpg",
+  "lena.png",
+  "lindsay.png",
+  "molly.png",
+  "nan.jpg",
+  "rachel.png",
+  "veronika.jpg",
+  "zoe.jpg"
 ];
 
 const getAvatar = gender => {
