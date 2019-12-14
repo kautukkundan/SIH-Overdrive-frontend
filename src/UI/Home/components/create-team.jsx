@@ -3,19 +3,23 @@ import swal from "sweetalert";
 
 import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
 
-const JoinTeam = () => {
-  const [teamCode, setTeamCode] = useState("");
+const CreateTeam = () => {
+  const [teamName, setTeamName] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleSubmit = () => {
-    if (teamCode.length !== 6) {
+    if (teamName.length !== 5) {
       swal(
-        "Incorrect Team Code",
-        "The Team Code must be 6 Digits Long",
+        "Incorrect Team Name",
+        "The Team Code must be atleast 5 Characters Long",
         "error"
       );
     } else {
-      swal("Request Sent", "The Team Leader has been Notified", "success");
+      swal(
+        "New Team Created",
+        "Congrats! \nInvite More members to your team and start the discussions.",
+        "success"
+      );
       setOpen(false);
     }
   };
@@ -26,33 +30,31 @@ const JoinTeam = () => {
       open={open}
       trigger={
         <Button inverted onClick={() => setOpen(true)}>
-          <Icon name="group" />
-          JOIN TEAM
+          <Icon name="plus " />
+          NEW TEAM
         </Button>
       }
       closeIcon
     >
-      <Header>Join New Team Using Access Code</Header>
+      <Header>Create New Team</Header>
       <Modal.Content>
-        - You can be a part of multiple teams
-        <br />
-        - Obtain the 6 digit team code from the team you wish to join
+        - Enter Team Name
         <br />
         <br />
         <Form>
           <input
-            placeholder="Enter Team Code - eg: QPWOER"
-            onChange={e => setTeamCode(e.target.value)}
+            placeholder="Enter Team Name - eg: Champs"
+            onChange={e => setTeamName(e.target.value)}
           />
         </Form>
       </Modal.Content>
       <Modal.Actions>
         <Button positive onClick={handleSubmit}>
-          Request to join team
+          Create
         </Button>
       </Modal.Actions>
     </Modal>
   );
 };
 
-export default JoinTeam;
+export default CreateTeam;

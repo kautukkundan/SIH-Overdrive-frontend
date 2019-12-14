@@ -27,13 +27,12 @@
   height: 70px;
   padding: 10px;
   color: white;
-  cursor: pointer;
 }
 
 .user-info {
   justify-content: center;
   align-items: center;
-  position: relative;
+  cursor: pointer;
 }
 
 .user-info > .text {

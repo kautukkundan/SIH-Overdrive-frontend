@@ -11,6 +11,8 @@ import ProblemStatementDetail from "../ProblemStatement/problem-statement-detail
 import JoinTeam from "./components/join-team";
 import Notifications from "../Notifications/notifications";
 import NotFound from "../NotFound/notfound";
+import CreateTeam from "./components/create-team";
+import { Button } from "semantic-ui-react";
 
 const Home = () => {
   return (
@@ -21,7 +23,10 @@ const Home = () => {
           <TeamMemberInfo />
         </div>
         <div className="footer">
-          <JoinTeam />
+          <Button.Group fluid inverted size="small" widths="2">
+            <CreateTeam />
+            <JoinTeam />
+          </Button.Group>
           <UserInfo />
         </div>
       </div>

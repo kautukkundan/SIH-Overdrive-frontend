@@ -1,24 +1,14 @@
 import React from "react";
 import "./details.css";
-import { useParams, useHistory } from "react-router";
+import { useParams } from "react-router";
 
-import { Label, Icon, Popup } from "semantic-ui-react";
-import File from "./file";
-import MyFeed from "./feed";
+import { Label } from "semantic-ui-react";
+import File from "./components/file";
+import MyFeed from "./components/feed";
+import ProblemNavigation from "./components/problem-navigation";
 
 const ProblemStatementDetail = ({ match, location }) => {
   let { id } = useParams();
-  const history = useHistory();
-
-  const changeProblem = to => {
-    if (to === "next") {
-      history.push(`/problem/${parseInt(id) + 1}`);
-    } else if (to === "prev" && id > 1) {
-      history.push(`/problem/${parseInt(id) - 1}`);
-    } else {
-      return;
-    }
-  };
 
   return (
     <div className="problem-statement-details-body">
@@ -34,51 +24,7 @@ const ProblemStatementDetail = ({ match, location }) => {
             Department of Empowerment of Persons with Disabilities, Ministry of
             Social Justice and Empowerment
           </div>
-          <div className="nav">
-            <Popup
-              position="bottom center"
-              popperModifiers={{
-                preventOverflow: { boundariesElement: "window" }
-              }}
-              content="Previous"
-              trigger={
-                <Icon
-                  name="caret left"
-                  size="big"
-                  onClick={() => changeProblem("prev")}
-                />
-              }
-            />
-            <Popup
-              position="bottom center"
-              popperModifiers={{
-                preventOverflow: { boundariesElement: "window" }
-              }}
-              content="All"
-              trigger={
-                <Icon
-                  name="circle"
-                  size="big"
-                  onClick={() => history.push("/")}
-                />
-              }
-            />
-
-            <Popup
-              position="bottom center"
-              popperModifiers={{
-                preventOverflow: { boundariesElement: "window" }
-              }}
-              content="Next"
-              trigger={
-                <Icon
-                  name="caret right"
-                  size="big"
-                  onClick={() => changeProblem("next")}
-                />
-              }
-            />
-          </div>
+          <ProblemNavigation id={id} />
         </div>
       </div>
       <br />
