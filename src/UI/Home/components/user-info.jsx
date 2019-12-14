@@ -32,7 +32,15 @@ const UserInfo = () => {
       }
       content={
         <div style={{ width: "250px", textAlign: "center" }}>
-          <Button fluid size="small" color="teal" content="Sign-Out"></Button>
+          <Button
+            fluid
+            size="small"
+            color="teal"
+            content="Sign-Out"
+            onClick={() => {
+              history.push("/logout");
+            }}
+          ></Button>
           <br />
           <Button
             fluid
