@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import "./home.css";
 import UserInfo from "./components/user-info";
@@ -10,6 +10,7 @@ import ProblemStatementsTable from "./components/problem-statements-table";
 import ProblemStatementDetail from "../ProblemStatement/problem-statement-detail";
 import JoinTeam from "./components/join-team";
 import Notifications from "../Notifications/notifications";
+import NotFound from "../NotFound/notfound";
 
 const Home = () => {
   return (
@@ -26,15 +27,19 @@ const Home = () => {
       </div>
 
       <div className="left">
-        <Route exact path="/">
-          <FilterGroup />
-          <br />
-          <ProblemStatementsTable />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <FilterGroup />
+            <br />
+            <ProblemStatementsTable />
+          </Route>
 
-        <Route exact path="/problem/:id" component={ProblemStatementDetail} />
+          <Route exact path="/problem/:id" component={ProblemStatementDetail} />
 
-        <Route exact path="/notifications" component={Notifications} />
+          <Route exact path="/notifications" component={Notifications} />
+
+          <Route component={NotFound} />
+        </Switch>
       </div>
     </div>
   );
