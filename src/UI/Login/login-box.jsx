@@ -53,6 +53,7 @@ const LoginBox = () => {
             type="email"
             onChange={e => setEmail(e.target.value)}
             placeholder="eg : joe@gmail.com"
+            name="username"
           />
         </Form.Field>
         <Form.Field>
@@ -61,6 +62,7 @@ const LoginBox = () => {
             type="password"
             onChange={e => setPassword(e.target.value)}
             placeholder="Min. 8 Characters"
+            name="password"
           />
         </Form.Field>
         <Button floated="right" color="linkedin" onClick={handleSubmit}>

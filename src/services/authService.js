@@ -2,10 +2,12 @@ import http from "./httpService";
 import APIURL from "../utils/apiUrl";
 
 import cookie from "react-cookies";
+import getAvatar from "../utils/createAvatar";
 
 const isLoggedIn = () => {
-  const userCookie = cookie.load("userAuthTokenSIH");
-  if (userCookie) {
+  const userToken = cookie.load("userAuthTokenSIH");
+  if (userToken) {
+    http.setUserToken(userToken);
     return true;
   } else {
     return false;
@@ -43,7 +45,8 @@ const registerNewUser = async (fname, lname, gender, emailid, password) => {
         first_name: fname,
         last_name: lname
       },
-      gender: gender
+      gender: gender,
+      avatar: getAvatar(gender)
     })
     .catch(error => {
       if (error.response) {
