@@ -54,6 +54,21 @@ const ProblemStatementDetail = ({ match, location }) => {
               popperModifiers={{
                 preventOverflow: { boundariesElement: "window" }
               }}
+              content="All"
+              trigger={
+                <Icon
+                  name="circle"
+                  size="big"
+                  onClick={() => history.push("/")}
+                />
+              }
+            />
+
+            <Popup
+              position="bottom center"
+              popperModifiers={{
+                preventOverflow: { boundariesElement: "window" }
+              }}
               content="Next"
               trigger={
                 <Icon

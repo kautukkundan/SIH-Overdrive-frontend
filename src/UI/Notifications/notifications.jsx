@@ -6,7 +6,9 @@ import Notification from "./components/notification";
 const Notifications = () => {
   return (
     <div className="notifications-body">
-      <div className="title">My Notifications</div>
+      <div className="title">
+        My Notifications | <a href="/">Home</a>
+      </div>
       <div className="all-notifications">
         <Notification
           name={"Kautuk Kundan"}
