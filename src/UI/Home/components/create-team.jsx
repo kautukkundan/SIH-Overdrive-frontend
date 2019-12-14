@@ -30,7 +30,7 @@ const CreateTeam = () => {
       open={open}
       trigger={
         <Button inverted onClick={() => setOpen(true)}>
-          <Icon name="plus " />
+          <Icon name="plus" />
           NEW TEAM
         </Button>
       }

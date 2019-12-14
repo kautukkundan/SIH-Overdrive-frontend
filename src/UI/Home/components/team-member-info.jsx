@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Label, Icon } from "semantic-ui-react";
+import { Label } from "semantic-ui-react";
 import AddMember from "./add-member";
 import LeaveTeam from "./leave-team";
 

@@ -1,16 +1,14 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { logout } from "../../services/authService";
 
 const Logout = () => {
   const history = useHistory();
 
-  const cleanUp = () => {
-    console.log("Cleaning Up!");
-  };
-
   useEffect(() => {
-    cleanUp();
+    logout();
     history.push("/login");
+    //eslint-disable-next-line
   }, []);
 
   return null;

@@ -212,7 +212,7 @@ const ProblemStatementsTable = () => {
       resizable={false}
       pageSize={50}
       style={{
-        maxHeight: "86vh"
+        maxHeight: "85vh"
       }}
     />
   );

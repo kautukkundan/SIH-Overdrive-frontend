@@ -4,6 +4,7 @@ import swal from "sweetalert";
 
 import { Form, Button } from "semantic-ui-react";
 import NewUserModal from "./new-user-modal";
+import { login } from "../../services/authService";
 
 const LoginBox = () => {
   const [email, setEmail] = useState("");
@@ -25,17 +26,18 @@ const LoginBox = () => {
         "error"
       );
     } else {
+      login(email, password);
       history.push("/");
     }
   };
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Field>
           <label>Email</label>
           <input
-            type="email"
+            // type="email"
             onChange={e => setEmail(e.target.value)}
             placeholder="eg : joe@gmail.com"
           />
@@ -48,12 +50,7 @@ const LoginBox = () => {
             placeholder="Min. 8 Characters"
           />
         </Form.Field>
-        <Button
-          type="submit"
-          floated="right"
-          color="linkedin"
-          onClick={handleSubmit}
-        >
+        <Button type="submit" floated="right" color="linkedin">
           Login
         </Button>
         <NewUserModal />

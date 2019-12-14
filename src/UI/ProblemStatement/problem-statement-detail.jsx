@@ -17,6 +17,7 @@ const ProblemStatementDetail = ({ match, location }) => {
           <img
             src="https://www.sih.gov.in/uploads/logo/no_image.png"
             height="50px"
+            alt=""
           />
         </div>
         <div className="text">
