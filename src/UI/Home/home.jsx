@@ -14,7 +14,7 @@ import NotFound from "../NotFound/notfound";
 import CreateTeam from "./components/create-team";
 import { Button, Dimmer, Loader } from "semantic-ui-react";
 import { isLoggedIn } from "../../services/authService";
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useStoreActions } from "easy-peasy";
 import { fetchUserDetails } from "../../services/userService";
 import swal from "sweetalert";
 
@@ -23,8 +23,7 @@ const Home = () => {
   const setToken = useStoreActions(action => action.user.setToken);
   const setUser = useStoreActions(action => action.user.setUser);
 
-  const loading = useStoreState(state => state.loading);
-  const setLoading = useStoreActions(action => action.setLoading);
+  const [loading, setLoading] = useState(false);
 
   const setUserDetails = async userToken => {
     setLoading(true);

@@ -10,9 +10,7 @@ import { useStoreActions, useStoreState } from "easy-peasy";
 const LoginBox = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const loading = useStoreState(state => state.loading);
-  const setLoading = useStoreActions(action => action.setLoading);
+  const [loading, setLoading] = useState(false);
 
   const setToken = useStoreActions(action => action.user.setToken);
 
