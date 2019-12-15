@@ -1,11 +1,11 @@
 import { action } from "easy-peasy";
 
 export default {
-  token: "",
-  email: "aloo@paratha.com",
-  firstname: "Mahesh",
-  lastname: "Darpan",
-  avatar: "joe",
+  token: null,
+  email: null,
+  firstname: null,
+  lastname: null,
+  avatar: null,
 
   setUser: action((state, data) => {
     state.email = data.user.email;

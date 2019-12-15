@@ -8,7 +8,7 @@ const isLoggedIn = () => {
   const userToken = cookie.load("userAuthTokenSIH");
   if (userToken) {
     http.setUserToken(userToken);
-    return true;
+    return userToken;
   } else {
     return false;
   }
@@ -28,7 +28,7 @@ const login = async (username, password) => {
   if (response.status === 200) {
     cookie.save("userAuthTokenSIH", response.data.token, { path: "/" });
   }
-  return response.status;
+  return response;
 };
 
 const logout = () => {
@@ -37,7 +37,7 @@ const logout = () => {
 
 const registerNewUser = async (fname, lname, gender, emailid, password) => {
   const response = await http
-    .post(APIURL.NEW_USER, {
+    .post(APIURL.CREATE_NEW_USER, {
       user: {
         email: emailid,
         username: emailid,
@@ -53,7 +53,7 @@ const registerNewUser = async (fname, lname, gender, emailid, password) => {
         return error.response;
       }
     });
-  return response.status;
+  return response;
 };
 
 export { login, logout, isLoggedIn, registerNewUser };

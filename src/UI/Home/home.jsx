@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 
 import "./home.css";
@@ -12,20 +12,49 @@ import JoinTeam from "./components/join-team";
 import Notifications from "../Notifications/notifications";
 import NotFound from "../NotFound/notfound";
 import CreateTeam from "./components/create-team";
-import { Button } from "semantic-ui-react";
+import { Button, Dimmer, Loader } from "semantic-ui-react";
 import { isLoggedIn } from "../../services/authService";
+import { useStoreActions } from "easy-peasy";
+import { fetchUserDetails } from "../../services/userService";
+import swal from "sweetalert";
 
 const Home = () => {
   const history = useHistory();
+  const setToken = useStoreActions(action => action.user.setToken);
+  const setUser = useStoreActions(action => action.user.setUser);
+
+  const [loading, setLoading] = useState(true);
+
+  const setUserDetails = async userToken => {
+    const response = await fetchUserDetails(userToken);
+    if (response.status === 200) {
+      setUser(response.data);
+      setLoading(false);
+    } else if (response.status === 401) {
+      swal(
+        "Unauthorized",
+        "you dont have permission to view this page",
+        "error"
+      );
+    }
+  };
 
   useEffect(() => {
-    const loggedin = isLoggedIn();
-    if (!loggedin) {
+    const userToken = isLoggedIn();
+
+    if (!userToken) {
       history.push("/login");
+    } else {
+      setToken(userToken);
+      setUserDetails(userToken);
     }
   }, [history]);
 
-  return (
+  return loading ? (
+    <Dimmer active>
+      <Loader size="large">Setting Up Workspace</Loader>
+    </Dimmer>
+  ) : (
     <div className="home-body">
       <div className="right">
         <div className="top">

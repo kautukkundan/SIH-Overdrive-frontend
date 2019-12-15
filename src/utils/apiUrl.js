@@ -1,4 +1,5 @@
 export default {
   LOGIN: "/login/",
-  NEW_USER: "/register/"
+  CREATE_NEW_USER: "/register/",
+  USER_DETAILS: "/teammember/"
 };

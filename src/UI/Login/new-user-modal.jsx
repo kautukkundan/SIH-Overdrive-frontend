@@ -28,14 +28,14 @@ const NewUserModal = () => {
       swal("Password Mismatch", "Passwords Don't Match", "error");
     } else {
       setLoading(true);
-      const status = await registerNewUser(
+      const response = await registerNewUser(
         firstName,
         lastName,
         gender,
         email,
         password
       );
-      if (status === 201) {
+      if (response.status === 201) {
         swal("Account Created", "Login to Continue.", "success");
         setOpen(false);
       } else {

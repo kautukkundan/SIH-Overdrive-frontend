@@ -27,7 +27,7 @@ const UserInfo = () => {
             <div
               className="avatar-image"
               style={{
-                background: `url('https://react.semantic-ui.com/images/avatar/small/${user.avatar}.jpg')`
+                background: `url('https://react.semantic-ui.com/images/avatar/small/${user.avatar}')`
               }}
             ></div>
           </div>

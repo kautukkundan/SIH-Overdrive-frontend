@@ -28,10 +28,11 @@ const F = [
 ];
 
 const getAvatar = gender => {
+  var avatar = "";
   if (gender === "M") {
-    var avatar = M[Math.floor(Math.random() * M.length)];
+    avatar = M[Math.floor(Math.random() * M.length)];
   } else if (gender === "F") {
-    var avatar = F[Math.floor(Math.random() * F.length)];
+    avatar = F[Math.floor(Math.random() * F.length)];
   }
 
   return avatar;

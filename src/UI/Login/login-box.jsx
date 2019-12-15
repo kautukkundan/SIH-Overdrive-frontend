@@ -5,12 +5,14 @@ import swal from "sweetalert";
 import { Form, Button, Dimmer, Loader } from "semantic-ui-react";
 import NewUserModal from "./new-user-modal";
 import { login } from "../../services/authService";
+import { useStoreActions } from "easy-peasy";
 
 const LoginBox = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const setToken = useStoreActions(action => action.user.setToken);
 
   const history = useHistory();
 
@@ -29,11 +31,12 @@ const LoginBox = () => {
       );
     } else {
       setLoading(true);
-      const status = await login(email, password);
+      const response = await login(email, password);
       setLoading(false);
-      if (status === 200) {
+      if (response.status === 200) {
+        setToken(response.data.token);
         history.push("/");
-      } else if (status === 400) {
+      } else if (response.status === 401) {
         swal("Error", "Email or Password seems incorrect!", "error");
       } else {
         swal("Oops!", "Something went wrong! Please Retry", "error");
