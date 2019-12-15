@@ -14,7 +14,7 @@ import NotFound from "../NotFound/notfound";
 import CreateTeam from "./components/create-team";
 import { Button, Dimmer, Loader } from "semantic-ui-react";
 import { isLoggedIn } from "../../services/authService";
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { fetchUserDetails } from "../../services/userService";
 import swal from "sweetalert";
 
@@ -23,9 +23,11 @@ const Home = () => {
   const setToken = useStoreActions(action => action.user.setToken);
   const setUser = useStoreActions(action => action.user.setUser);
 
-  const [loading, setLoading] = useState(true);
+  const loading = useStoreState(state => state.loading);
+  const setLoading = useStoreActions(action => action.setLoading);
 
   const setUserDetails = async userToken => {
+    setLoading(true);
     const response = await fetchUserDetails(userToken);
     if (response.status === 200) {
       setUser(response.data);
@@ -51,7 +53,7 @@ const Home = () => {
   }, [history]);
 
   return loading ? (
-    <Dimmer active>
+    <Dimmer active inverted>
       <Loader size="large">Setting Up Workspace</Loader>
     </Dimmer>
   ) : (

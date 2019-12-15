@@ -5,13 +5,15 @@ import swal from "sweetalert";
 import { Form, Button, Dimmer, Loader } from "semantic-ui-react";
 import NewUserModal from "./new-user-modal";
 import { login } from "../../services/authService";
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 
 const LoginBox = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loading, setLoading] = useState(false);
+  const loading = useStoreState(state => state.loading);
+  const setLoading = useStoreActions(action => action.setLoading);
+
   const setToken = useStoreActions(action => action.user.setToken);
 
   const history = useHistory();
