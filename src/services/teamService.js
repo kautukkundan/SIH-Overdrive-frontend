@@ -29,9 +29,24 @@ const createTeam = async teamName => {
         return error.response;
       }
     });
-
   return response;
 };
+
+// const leaveTeam = async teamId => {
+//   const response = await httpService
+//     .delete(APIURL.TEAM_OPS, {
+//       create: "false",
+//       name: teamName,
+//       key: ""
+//     })
+//     .catch(error => {
+//       if (error.response) {
+//         return error.response;
+//       }
+//     });
+
+//   return response;
+// };
 
 const getTeams = async () => {
   const response = await httpService
@@ -41,7 +56,6 @@ const getTeams = async () => {
         return error.response;
       }
     });
-
   return response;
 };
 

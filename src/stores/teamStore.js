@@ -5,9 +5,9 @@ export default {
   current_team: {
     id: null,
     name: null,
-    key: null
+    key: null,
+    team_mates: []
   },
-  team_mates: null,
 
   setAllTeams: action((state, teams) => {
     state.all_teams = teams;
@@ -16,7 +16,7 @@ export default {
     state.current_team.key = teams.slice(-1)[0].team.key;
   }),
   setAllTeamMates: action((state, teamMates) => {
-    state.team_mates = teamMates;
+    state.current_team.team_mates = teamMates;
   }),
   setCurrentTeam: action((state, current_team) => {
     state.current_team.id = current_team.id;

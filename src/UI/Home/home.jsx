@@ -61,7 +61,7 @@ const Home = () => {
   const getAllTeams = async () => {
     const response = await getTeams();
     if (response.status === 200) {
-      await setAllTeams(response.data);
+      setAllTeams(response.data);
     } else {
       swal("Error", "Unable to fetch Teams", "error");
     }
