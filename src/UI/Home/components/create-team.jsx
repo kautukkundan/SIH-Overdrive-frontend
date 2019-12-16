@@ -17,7 +17,7 @@ const CreateTeam = () => {
         "New Team Created",
         "Congrats! \nInvite More members to your team and start the discussions.",
         "success"
-      );
+      ).then(() => window.location.reload());
     } else {
       swal("Oops!", "Something went wrong, please try again later.", "error");
     }

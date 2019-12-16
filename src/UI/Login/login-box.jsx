@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import { Form, Button, Dimmer, Loader } from "semantic-ui-react";
 import NewUserModal from "./new-user-modal";
 import { login } from "../../services/authService";
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useStoreActions } from "easy-peasy";
 
 const LoginBox = () => {
   const [email, setEmail] = useState("");

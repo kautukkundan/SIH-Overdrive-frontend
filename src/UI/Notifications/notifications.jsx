@@ -2,12 +2,18 @@ import React from "react";
 import "./notifications.css";
 
 import Notification from "./components/notification";
+import { useHistory } from "react-router-dom";
 
 const Notifications = () => {
+  const history = useHistory();
+
   return (
     <div className="notifications-body">
       <div className="title">
-        My Notifications | <a href="/">Home</a>
+        My Notifications |{" "}
+        <a style={{ cursor: "pointer" }} onClick={() => history.push("/")}>
+          Home
+        </a>
       </div>
       <div className="all-notifications">
         <Notification

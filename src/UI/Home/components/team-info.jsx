@@ -1,29 +1,24 @@
 import React from "react";
 
 import { Dropdown } from "semantic-ui-react";
-
-const options = [
-  {
-    key: "Winners",
-    text: "Winners",
-    value: "Winners",
-    content: "Winners"
-  },
-  {
-    key: "Champions",
-    text: "Champions",
-    value: "Champions",
-    content: "Champions"
-  },
-  {
-    key: "Superstars",
-    text: "Superstars",
-    value: "Superstars",
-    content: "Superstars"
-  }
-];
+import { useStoreState, useStoreActions } from "easy-peasy";
 
 const TeamInfo = () => {
+  const teams = useStoreState(state => state.team.all_teams);
+  const setCurrentTeam = useStoreActions(action => action.team.setCurrentTeam);
+  const currentTeam = useStoreState(state => state.team.current_team);
+
+  const options =
+    teams &&
+    teams.map(item => {
+      return {
+        key: item.team.id,
+        value: item.team.id,
+        text: item.team.name,
+        content: item.team.name
+      };
+    });
+
   return (
     <div className="team-info info">
       <div className="team">
@@ -32,11 +27,16 @@ const TeamInfo = () => {
           inline
           header="Select Team"
           options={options}
-          defaultValue={options[0].value}
+          defaultValue={options && options.slice(-1)[0].value}
+          onChange={(event, data) => {
+            setCurrentTeam(
+              teams.filter(item => item.team.id === data.value)[0].team
+            );
+          }}
         />
         <br />
         <br />
-        <span style={{ opacity: 0.5 }}>Team Code</span> ZXP0AM
+        <span style={{ opacity: 0.5 }}>Team Code</span> {currentTeam.key}
       </div>
     </div>
   );

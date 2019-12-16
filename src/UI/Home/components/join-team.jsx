@@ -10,9 +10,9 @@ const JoinTeam = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const joinNewTeam = async (name, code) => {
+  const joinNewTeam = async code => {
     setLoading(true);
-    const response = await joinTeam(name, code);
+    const response = await joinTeam(code);
     if (response.status === 200) {
       swal("Request Sent", "The Team Leader has been Notified", "success");
     } else if (response.status === 404) {
@@ -33,7 +33,7 @@ const JoinTeam = () => {
         "error"
       );
     } else {
-      joinNewTeam(teamName, teamCode);
+      joinNewTeam(teamCode);
     }
   };
 
@@ -57,10 +57,6 @@ const JoinTeam = () => {
         <br />
         <br />
         <Form>
-          <input
-            placeholder="Enter Team Name"
-            onChange={e => setTeamName(e.target.value)}
-          />
           <input
             placeholder="Enter Team Code - eg: QPWOER"
             onChange={e => setTeamCode(e.target.value)}

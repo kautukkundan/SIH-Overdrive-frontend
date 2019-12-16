@@ -1,11 +1,11 @@
 import httpService from "./httpService";
 import APIURL from "../utils/apiUrl";
 
-const joinTeam = async (teamName, teamKey) => {
+const joinTeam = async teamKey => {
   const response = await httpService
     .post(APIURL.TEAM_OPS, {
       create: "false",
-      name: teamName,
+      name: "",
       key: teamKey
     })
     .catch(error => {
@@ -33,4 +33,28 @@ const createTeam = async teamName => {
   return response;
 };
 
-export { joinTeam, createTeam };
+const getTeams = async () => {
+  const response = await httpService
+    .get(APIURL.TEAM_OPS + "list/")
+    .catch(error => {
+      if (error.response) {
+        return error.response;
+      }
+    });
+
+  return response;
+};
+
+const getTeamMates = async teamId => {
+  const response = await httpService
+    .get(APIURL.TEAM_OPS + `${teamId}/`)
+    .catch(error => {
+      if (error.response) {
+        return error.response;
+      }
+    });
+
+  return response;
+};
+
+export { joinTeam, createTeam, getTeams, getTeamMates };
