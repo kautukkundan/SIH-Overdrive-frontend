@@ -9,7 +9,6 @@ const getNotifications = async teamId => {
         return error.response;
       }
     });
-
   return response;
 };
 

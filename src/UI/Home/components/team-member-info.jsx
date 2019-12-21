@@ -1,29 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Label } from "semantic-ui-react";
 import AddMember from "./add-member";
 import LeaveTeam from "./leave-team";
-import { useStoreState, useStoreActions } from "easy-peasy";
-import { getTeamMates } from "../../../services/teamService";
-import swal from "sweetalert";
+import { useStoreState } from "easy-peasy";
 
 const TeamMemberInfo = () => {
   const currentTeam = useStoreState(state => state.team.current_team);
-  const setAllTeamMates = useStoreActions(
-    action => action.team.setAllTeamMates
-  );
-
-  useEffect(() => {
-    const getTeamMembers = async teamId => {
-      const response = await getTeamMates(teamId);
-      if (response.status === 200) {
-        setAllTeamMates(response.data);
-      } else {
-        swal("Error", "Cannot Fetch Team Mates", "error");
-      }
-    };
-    currentTeam.id && getTeamMembers(currentTeam.id);
-  }, []);
 
   return (
     <div className="team-member-info">
@@ -44,9 +27,9 @@ const TeamMemberInfo = () => {
                     <span style={{ color: "black" }}>LEADER</span>
                   </Label>
                 ) : null}
-                {/* <Label size="mini" color="orange">
+                <Label size="mini" color="orange">
                   <span>12</span>
-                </Label> */}
+                </Label>
               </div>
               <div className="email">{item.team_member.user.email}</div>
             </div>

@@ -14,7 +14,7 @@ import NotFound from "../NotFound/notfound";
 import CreateTeam from "./components/create-team";
 import { Button, Dimmer, Loader } from "semantic-ui-react";
 import { isLoggedIn } from "../../services/authService";
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useStoreActions } from "easy-peasy";
 import { fetchUserDetails } from "../../services/userService";
 import swal from "sweetalert";
 import { getNotifications } from "../../services/notificationService";
@@ -31,8 +31,6 @@ const Home = () => {
   const setAllTeamMates = useStoreActions(
     action => action.team.setAllTeamMates
   );
-
-  const currentTeam = useStoreState(state => state.team.current_team);
 
   const [loading, setLoading] = useState(false);
 
@@ -53,6 +51,8 @@ const Home = () => {
     const response = await getNotifications(teamId);
     if (response.status === 200) {
       setNotifications(response.data);
+    } else if (response.status === 401) {
+      setNotifications([]);
     } else {
       swal("Error", "Unable to fetch Notifications", "error");
     }
@@ -62,6 +62,7 @@ const Home = () => {
     const response = await getTeams();
     if (response.status === 200) {
       setAllTeams(response.data);
+      return response.data.slice(-1)[0].team.id;
     } else {
       swal("Error", "Unable to fetch Teams", "error");
     }
@@ -83,10 +84,10 @@ const Home = () => {
       setLoading(true);
       await setToken(userToken);
       await setUserDetails(userToken);
-      await getAllTeams();
+      const current_team_id = await getAllTeams();
+      await getAllTeamMates(current_team_id);
+      await getAllNotifications(current_team_id);
       setLoading(false);
-      // await getAllTeamMates(currentTeam);
-      // await getAllNotifications(currentTeam);
     };
 
     if (!userToken) {
