@@ -13,11 +13,11 @@ const JoinTeam = () => {
     setLoading(true);
     const response = await joinTeam(code);
     if (response.status === 200) {
-      swal("Request Sent", "The Team Leader has been Notified", "success");
+      swal("Success", response.data, "success");
     } else if (response.status === 404) {
       swal("Invalid Code!", "This team does not exist!", "error");
     } else {
-      swal("Request Sent", "The Team Leader has been Notified", "success");
+      swal("Oops!", "Something unexpected happened. Please retry", "warning");
       setOpen(false);
     }
     setLoading(false);

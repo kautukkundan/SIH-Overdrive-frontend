@@ -4,12 +4,16 @@ import { Dropdown, Loader, Dimmer } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { getTeamMates } from "../../../services/teamService";
 import TeamMemberInfo from "./team-member-info";
+import { getNotifications } from "../../../services/notificationService";
 
 const TeamInfo = () => {
   const teams = useStoreState(state => state.team.all_teams);
   const setCurrentTeam = useStoreActions(action => action.team.setCurrentTeam);
   const setAllTeamMates = useStoreActions(
     action => action.team.setAllTeamMates
+  );
+  const setNotifications = useStoreActions(
+    action => action.notifications.setNotifications
   );
   const currentTeam = useStoreState(state => state.team.current_team);
 
@@ -18,6 +22,7 @@ const TeamInfo = () => {
   const changeTeam = async team => {
     setLoading(true);
     setCurrentTeam(team);
+
     const getAllTeamMates = async teamId => {
       const response = await getTeamMates(teamId);
       if (response.status === 200) {
@@ -26,7 +31,19 @@ const TeamInfo = () => {
         alert("Error", "Unable to fetch Teams", "error");
       }
     };
+    const getAllNotifications = async teamId => {
+      const response = await getNotifications(teamId);
+      if (response.status === 200) {
+        setNotifications(response.data);
+      } else if (response.status === 401) {
+        setNotifications([]);
+      } else {
+        alert("Error", "Unable to fetch Notifications", "error");
+      }
+    };
+
     await getAllTeamMates(team.id);
+    await getAllNotifications(team.id);
     setLoading(false);
   };
 
