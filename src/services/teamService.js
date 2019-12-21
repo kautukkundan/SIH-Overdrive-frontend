@@ -13,7 +13,6 @@ const joinTeam = async teamKey => {
         return error.response;
       }
     });
-
   return response;
 };
 
@@ -40,7 +39,6 @@ const leaveTeam = async teamId => {
         return error.response;
       }
     });
-
   return response;
 };
 
@@ -63,7 +61,6 @@ const getTeamMates = async teamId => {
         return error.response;
       }
     });
-
   return response;
 };
 

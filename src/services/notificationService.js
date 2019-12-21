@@ -22,7 +22,6 @@ const acceptNotification = async id => {
         return error.response;
       }
     });
-
   return response;
 };
 
@@ -36,7 +35,6 @@ const rejectNotification = async id => {
         return error.response;
       }
     });
-
   return response;
 };
 

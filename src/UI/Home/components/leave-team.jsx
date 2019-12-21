@@ -1,8 +1,9 @@
 import React from "react";
-import { Icon, Popup } from "semantic-ui-react";
 import swal from "sweetalert";
 import { useStoreState } from "easy-peasy";
 import { leaveTeam } from "../../../services/teamService";
+
+import { Icon, Popup } from "semantic-ui-react";
 
 const LeaveTeam = () => {
   const currentTeam = useStoreState(state => state.team.current_team);

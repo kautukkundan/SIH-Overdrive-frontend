@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
+import { joinTeam } from "../../../services/teamService";
 
 import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
-import { joinTeam } from "../../../services/teamService";
 
 const JoinTeam = () => {
   const [teamCode, setTeamCode] = useState("");

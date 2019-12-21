@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-
-import { Dropdown, Loader, Dimmer } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { getTeamMates } from "../../../services/teamService";
 import TeamMemberInfo from "./team-member-info";
 import { getNotifications } from "../../../services/notificationService";
+
+import { Dropdown, Loader, Dimmer } from "semantic-ui-react";
 
 const TeamInfo = () => {
   const teams = useStoreState(state => state.team.all_teams);

@@ -9,6 +9,7 @@ export default {
     team_mates: []
   },
 
+  // actions
   setAllTeams: action((state, teams) => {
     if (teams === null) {
       state.all_teams = teams;

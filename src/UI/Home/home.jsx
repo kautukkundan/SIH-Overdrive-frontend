@@ -4,7 +4,6 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import "./home.css";
 import UserInfo from "./components/user-info";
 import TeamInfo from "./components/team-info";
-import TeamMemberInfo from "./components/team-member-info";
 import FilterGroup from "./components/filter-group";
 import ProblemStatementsTable from "./components/problem-statements-table";
 import ProblemStatementDetail from "../ProblemStatement/problem-statement-detail";

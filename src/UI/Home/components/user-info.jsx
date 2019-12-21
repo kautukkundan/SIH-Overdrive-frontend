@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useStoreState } from "easy-peasy";
 
 import { Popup, Button, Label, Icon } from "semantic-ui-react";
-import { useStoreState } from "easy-peasy";
 
 const UserInfo = () => {
   const history = useHistory();
