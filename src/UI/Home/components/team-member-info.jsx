@@ -27,9 +27,9 @@ const TeamMemberInfo = () => {
                     <span style={{ color: "black" }}>LEADER</span>
                   </Label>
                 ) : null}
-                <Label size="mini" color="orange">
+                {/* <Label size="mini" color="orange">
                   <span>12</span>
-                </Label>
+                </Label> */}
               </div>
               <div className="email">{item.team_member.user.email}</div>
             </div>
