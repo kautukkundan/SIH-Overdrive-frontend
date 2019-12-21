@@ -1,8 +1,12 @@
 import React from "react";
 import { Icon, Popup } from "semantic-ui-react";
 import swal from "sweetalert";
+import { useStoreState } from "easy-peasy";
+import { leaveTeam } from "../../../services/teamService";
 
 const LeaveTeam = () => {
+  const currentTeam = useStoreState(state => state.team.current_team);
+
   const handleExit = () => {
     swal({
       title: "Exit Team",
@@ -10,10 +14,13 @@ const LeaveTeam = () => {
       icon: "warning",
       buttons: true,
       dangerMode: true
-    }).then(willDelete => {
+    }).then(async willDelete => {
       if (willDelete) {
+        await leaveTeam(currentTeam.id);
         swal("You have successfully Exited the team!", {
           icon: "success"
+        }).then(() => {
+          window.location.reload();
         });
       }
     });

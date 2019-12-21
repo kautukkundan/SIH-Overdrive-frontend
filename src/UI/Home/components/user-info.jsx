@@ -7,7 +7,8 @@ import { useStoreState } from "easy-peasy";
 const UserInfo = () => {
   const history = useHistory();
 
-  const user = useStoreState(store => store.user);
+  const user = useStoreState(state => state.user);
+  const notifications = useStoreState(state => state.notifications.all);
 
   return (
     <Popup
@@ -17,9 +18,11 @@ const UserInfo = () => {
           <div className="text">
             <div className="name">
               {user.firstname} {user.lastname} &nbsp;&nbsp;
-              <Label color="red" circular style={{ display: "" }}>
-                <Icon name="bell" />7
-              </Label>
+              {notifications && notifications.length > 0 ? (
+                <Label color="red" circular style={{ display: "" }}>
+                  <Icon name="bell" /> {notifications.length}
+                </Label>
+              ) : null}
             </div>
             <div className="email">{user.email}</div>
           </div>
