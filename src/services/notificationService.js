@@ -29,7 +29,7 @@ const acceptNotification = async id => {
 const rejectNotification = async id => {
   const response = await http
     .delete(APIURL.NOTIFICATIONS, {
-      notification: id
+      data: { notification: id }
     })
     .catch(error => {
       if (error.response) {

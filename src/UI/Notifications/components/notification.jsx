@@ -30,6 +30,13 @@ const Notification = props => {
     setLoadingB(true);
     const response = await rejectNotification(props.notification_id);
     // window.location.reload();
+    if (response.status === 200) {
+      swal("Accepted", response.data, "success").then(() => {
+        window.location.reload();
+      });
+    } else {
+      swal("Oops!", "Something went wrong! please try again", "error");
+    }
     setLoadingB(false);
   };
 
