@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Dropdown, Loader, Dimmer } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { getTeamMates } from "../../../services/teamService";
+import TeamMemberInfo from "./team-member-info";
 
 const TeamInfo = () => {
   const teams = useStoreState(state => state.team.all_teams);
@@ -45,25 +46,34 @@ const TeamInfo = () => {
       <Dimmer active={loading}>
         <Loader />
       </Dimmer>
-      <div className="team-info info">
-        <div className="team">
-          <span style={{ opacity: 0.5 }}>Team </span>
-          <Dropdown
-            inline
-            header="Select Team"
-            options={options}
-            defaultValue={options && options.slice(-1)[0].value}
-            onChange={(event, data) => {
-              changeTeam(
-                teams.filter(item => item.team.id === data.value)[0].team
-              );
-            }}
-          />
-          <br />
-          <br />
-          <span style={{ opacity: 0.5 }}>Team Code</span> {currentTeam.key}
+      {teams ? (
+        <React.Fragment>
+          <div className="team-info info">
+            <div className="team">
+              <span style={{ opacity: 0.5 }}>Team </span>
+              <Dropdown
+                inline
+                header="Select Team"
+                options={options}
+                defaultValue={options && options.slice(-1)[0].value}
+                onChange={(event, data) => {
+                  changeTeam(
+                    teams.filter(item => item.team.id === data.value)[0].team
+                  );
+                }}
+              />
+              <br />
+              <br />
+              <span style={{ opacity: 0.5 }}>Team Code</span> {currentTeam.key}
+            </div>
+          </div>
+          <TeamMemberInfo />
+        </React.Fragment>
+      ) : (
+        <div className="team-info info">
+          + Create or join a team to get started
         </div>
-      </div>
+      )}
     </React.Fragment>
   );
 };

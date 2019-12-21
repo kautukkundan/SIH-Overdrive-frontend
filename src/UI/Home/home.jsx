@@ -62,7 +62,10 @@ const Home = () => {
     const response = await getTeams();
     if (response.status === 200) {
       setAllTeams(response.data);
-      return response.data.slice(-1)[0].team.id;
+      if (response.data.length) {
+        return response.data.slice(-1)[0].team.id;
+      }
+      return null;
     } else {
       swal("Error", "Unable to fetch Teams", "error");
     }
@@ -85,8 +88,10 @@ const Home = () => {
       await setToken(userToken);
       await setUserDetails(userToken);
       const current_team_id = await getAllTeams();
-      await getAllTeamMates(current_team_id);
-      await getAllNotifications(current_team_id);
+      if (current_team_id) {
+        await getAllTeamMates(current_team_id);
+        await getAllNotifications(current_team_id);
+      }
       setLoading(false);
     };
 
@@ -107,7 +112,6 @@ const Home = () => {
       <div className="right">
         <div className="top">
           <TeamInfo />
-          <TeamMemberInfo />
         </div>
         <div className="footer">
           <Button.Group fluid inverted size="small" widths="2">

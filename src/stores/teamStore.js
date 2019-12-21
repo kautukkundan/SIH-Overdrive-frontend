@@ -10,10 +10,14 @@ export default {
   },
 
   setAllTeams: action((state, teams) => {
-    state.all_teams = teams;
-    state.current_team.id = teams.slice(-1)[0].team.id;
-    state.current_team.name = teams.slice(-1)[0].team.name;
-    state.current_team.key = teams.slice(-1)[0].team.key;
+    if (teams === null) {
+      state.all_teams = teams;
+    } else if (teams.length) {
+      state.all_teams = teams;
+      state.current_team.id = teams.slice(-1)[0].team.id;
+      state.current_team.name = teams.slice(-1)[0].team.name;
+      state.current_team.key = teams.slice(-1)[0].team.key;
+    }
   }),
   setAllTeamMates: action((state, teamMates) => {
     state.current_team.team_mates = teamMates;

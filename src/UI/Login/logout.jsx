@@ -8,6 +8,11 @@ const Logout = () => {
 
   const setToken = useStoreActions(action => action.user.setToken);
   const setUser = useStoreActions(action => action.user.setUser);
+  const setAllTeams = useStoreActions(action => action.team.setAllTeams);
+  const setCurrentTeam = useStoreActions(action => action.team.setCurrentTeam);
+  const setNotifications = useStoreActions(
+    action => action.notifications.setNotifications
+  );
 
   useEffect(() => {
     logout();
@@ -15,6 +20,14 @@ const Logout = () => {
     setUser({
       user: { email: null, first_name: null, last_name: null, avatar: null }
     });
+    setAllTeams(null);
+    setCurrentTeam({
+      id: null,
+      name: null,
+      key: null,
+      team_mates: []
+    });
+    setNotifications(null);
     history.push("/login");
     //eslint-disable-next-line
   }, []);
