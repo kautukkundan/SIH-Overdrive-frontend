@@ -16,7 +16,7 @@ const TeamMemberInfo = () => {
 
       {currentTeam.team_mates.map((item, index) => {
         return (
-          <div className="team-member">
+          <div className="team-member" key={index}>
             <div className="id">{index + 1}.</div>
             <div>
               <div className="name">

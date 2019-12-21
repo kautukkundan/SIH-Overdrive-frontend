@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../services/authService";
-import { useStoreActions, action } from "easy-peasy";
+import { useStoreActions } from "easy-peasy";
 
 const Logout = () => {
   const history = useHistory();

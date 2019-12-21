@@ -6,7 +6,6 @@ import { joinTeam } from "../../../services/teamService";
 
 const JoinTeam = () => {
   const [teamCode, setTeamCode] = useState("");
-  const [teamName, setTeamName] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 

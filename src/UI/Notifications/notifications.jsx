@@ -11,9 +11,12 @@ const Notifications = () => {
     <div className="notifications-body">
       <div className="title">
         My Notifications |{" "}
-        <a style={{ cursor: "pointer" }} onClick={() => history.push("/")}>
+        <span
+          style={{ color: "#1f70bf", cursor: "pointer" }}
+          onClick={() => history.push("/")}
+        >
           Home
-        </a>
+        </span>
       </div>
       <div className="all-notifications">
         <Notification

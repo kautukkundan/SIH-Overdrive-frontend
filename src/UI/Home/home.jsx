@@ -95,6 +95,7 @@ const Home = () => {
     } else {
       dataFetcher();
     }
+    //eslint-disable-next-line
   }, [history]);
 
   return loading ? (
