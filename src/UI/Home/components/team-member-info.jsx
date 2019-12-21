@@ -37,7 +37,7 @@ const TeamMemberInfo = () => {
         );
       })}
 
-      <AddMember />
+      {/* <AddMember /> */}
     </div>
   );
 };

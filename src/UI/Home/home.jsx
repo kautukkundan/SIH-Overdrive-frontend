@@ -52,7 +52,7 @@ const Home = () => {
     if (response.status === 200) {
       setNotifications(response.data);
     } else if (response.status === 401) {
-      setNotifications([]);
+      setNotifications(null);
     } else {
       swal("Error", "Unable to fetch Notifications", "error");
     }

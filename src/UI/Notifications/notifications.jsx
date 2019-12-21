@@ -4,6 +4,7 @@ import "./notifications.css";
 import Notification from "./components/notification";
 import { useHistory } from "react-router-dom";
 import { useStoreState } from "easy-peasy";
+import { Icon } from "semantic-ui-react";
 
 const Notifications = () => {
   const history = useHistory();
@@ -23,7 +24,7 @@ const Notifications = () => {
         </span>
       </div>
       <div className="all-notifications">
-        {allNotifications &&
+        {allNotifications ? (
           allNotifications.map((item, index) => {
             return (
               <Notification
@@ -40,7 +41,17 @@ const Notifications = () => {
                 avatar={item.team_member.avatar}
               />
             );
-          })}
+          })
+        ) : (
+          <p>
+            <Icon name="ban" color="red" size="large" />
+            Requests for this team can only be accessed by the Leader of this
+            team
+          </p>
+        )}
+        {allNotifications && allNotifications.length === 0
+          ? "No New Requests"
+          : null}
       </div>
     </div>
   );
