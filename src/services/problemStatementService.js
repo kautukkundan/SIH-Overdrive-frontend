@@ -19,9 +19,9 @@ const getStaticProblems = async () => {
   return response;
 };
 
-const getDynamicProblemsAll = async teamId => {
+const getDynamicProblems = async teamId => {
   const response = await http
-    .get(APIURL.PROBLEMS + `data/team=${teamId}`)
+    .get(APIURL.PROBLEMS + `data/?team=${teamId}`)
     .catch(error => {
       if (error.response) {
         return error.response;
@@ -30,9 +30,9 @@ const getDynamicProblemsAll = async teamId => {
   return response;
 };
 
-const getDynamicProblemsSingle = async (teamId, problemId) => {
+const getSingleDynamicProblem = async (teamId, problemId) => {
   const response = await http
-    .get(APIURL.PROBLEMS + `${problemId}/team=${teamId}`)
+    .get(APIURL.PROBLEMS + `${problemId}/?team=${teamId}`)
     .catch(error => {
       if (error.response) {
         return error.response;
@@ -57,7 +57,7 @@ const updateDynamicProblemsSingle = async (teamId, problemId, data) => {
 export {
   getProblemCount,
   getStaticProblems,
-  getDynamicProblemsAll,
-  getDynamicProblemsSingle,
+  getDynamicProblems,
+  getSingleDynamicProblem,
   updateDynamicProblemsSingle
 };

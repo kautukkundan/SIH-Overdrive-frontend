@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
 import {
   acceptNotification,
-  rejectNotification,
-  getNotifications
+  rejectNotification
 } from "../../../services/notificationService";
 import swal from "sweetalert";
-import { useStoreState } from "easy-peasy";
 
 const Notification = props => {
   const [loadingA, setLoadingA] = useState(false);
@@ -28,7 +26,7 @@ const Notification = props => {
 
   const rejectMember = async () => {
     setLoadingB(true);
-    const response = await rejectNotification(props.notification_id);
+    await rejectNotification(props.notification_id);
     window.location.reload();
     setLoadingB(false);
   };

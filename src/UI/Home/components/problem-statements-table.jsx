@@ -4,12 +4,15 @@ import { useHistory } from "react-router-dom";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-import { Checkbox, Form, Radio } from "semantic-ui-react";
+import { Form, Radio } from "semantic-ui-react";
 import { useStoreState } from "easy-peasy";
 
 const ProblemStatementsTable = () => {
   let history = useHistory();
   const problemStatementsStatic = useStoreState(state => state.problems.static);
+  const problemStatementsDynamic = useStoreState(
+    state => state.problems.dynamic
+  );
 
   const domainOptions = [
     ...new Set(problemStatementsStatic.map(item => item.domain_bucket))
@@ -35,7 +38,18 @@ const ProblemStatementsTable = () => {
           accessor: "read",
           style: { textAlign: "center" },
           width: 43,
-          Cell: props => <Checkbox defaultChecked />,
+          Cell: props => (
+            <input
+              type="checkbox"
+              name="read"
+              value="checked"
+              checked={props.value}
+              onChange={e => {
+                console.log(props.original.id);
+                console.log(e.target.checked);
+              }}
+            />
+          ),
           filterable: false
         },
         {
@@ -90,8 +104,12 @@ const ProblemStatementsTable = () => {
               <option value="all" defaultValue>
                 all
               </option>
-              {categoryOptions.sort().map(item => {
-                return <option value={item}>{item}</option>;
+              {categoryOptions.sort().map((item, index) => {
+                return (
+                  <option key={index} value={item}>
+                    {item}
+                  </option>
+                );
               })}
             </select>
           )
@@ -119,8 +137,12 @@ const ProblemStatementsTable = () => {
               <option value="all" defaultValue>
                 all
               </option>
-              {domainOptions.sort().map(item => {
-                return <option value={item}>{item}</option>;
+              {domainOptions.sort().map((item, index) => {
+                return (
+                  <option key={index} value={item}>
+                    {item}
+                  </option>
+                );
               })}
             </select>
           )

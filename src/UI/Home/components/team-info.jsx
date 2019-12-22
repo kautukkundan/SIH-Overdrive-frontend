@@ -5,6 +5,7 @@ import TeamMemberInfo from "./team-member-info";
 import { getNotifications } from "../../../services/notificationService";
 
 import { Dropdown, Loader, Dimmer } from "semantic-ui-react";
+import { getDynamicProblems } from "../../../services/problemStatementService";
 
 const TeamInfo = () => {
   const teams = useStoreState(state => state.team.all_teams);
@@ -14,6 +15,9 @@ const TeamInfo = () => {
   );
   const setNotifications = useStoreActions(
     action => action.notifications.setNotifications
+  );
+  const setAllDynamicProblems = useStoreActions(
+    action => action.problems.setAllDynamicProblems
   );
   const currentTeam = useStoreState(state => state.team.current_team);
 
@@ -42,8 +46,18 @@ const TeamInfo = () => {
       }
     };
 
+    const getAllDynamicProblems = async teamId => {
+      const response = await getDynamicProblems(teamId);
+      if (response.status === 200) {
+        setAllDynamicProblems(response.data);
+      } else {
+        alert("Error", "Unable to fetch Problems", "error");
+      }
+    };
+
     await getAllTeamMates(team.id);
     await getAllNotifications(team.id);
+    await getAllDynamicProblems(team.id);
     setLoading(false);
   };
 

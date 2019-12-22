@@ -18,7 +18,10 @@ import { fetchUserDetails } from "../../services/userService";
 import swal from "sweetalert";
 import { getNotifications } from "../../services/notificationService";
 import { getTeams, getTeamMates } from "../../services/teamService";
-import { getStaticProblems } from "../../services/problemStatementService";
+import {
+  getStaticProblems,
+  getDynamicProblems
+} from "../../services/problemStatementService";
 
 const Home = () => {
   const history = useHistory();
@@ -34,6 +37,9 @@ const Home = () => {
 
   const setAllStaticProblems = useStoreActions(
     action => action.problems.setAllStaticProblems
+  );
+  const setAllDynamicProblems = useStoreActions(
+    action => action.problems.setAllDynamicProblems
   );
 
   const [loading, setLoading] = useState(false);
@@ -61,6 +67,15 @@ const Home = () => {
       }
     }
     setAllStaticProblems(JSON.parse(static_problems));
+  };
+
+  const getAllDynamicProblems = async teamId => {
+    const response = await getDynamicProblems(teamId);
+    if (response.status === 200) {
+      setAllDynamicProblems(response.data);
+    } else {
+      swal("Error", "Unable to fetch Problems", "error");
+    }
   };
 
   const getAllNotifications = async teamId => {
@@ -110,6 +125,7 @@ const Home = () => {
       if (current_team_id) {
         await getAllTeamMates(current_team_id);
         await getAllNotifications(current_team_id);
+        await getAllDynamicProblems(current_team_id);
       }
       setLoading(false);
     };
