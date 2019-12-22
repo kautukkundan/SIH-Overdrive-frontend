@@ -13,18 +13,54 @@ const ProblemStatementsTable = () => {
   const problemStatementsDynamic = useStoreState(
     state => state.problems.dynamic
   );
+  const showing = useStoreState(state => state.problems.showing);
+
+  const filteredProblems = filter => {
+    let filteredProblemsId = [];
+    if (filter === "All") {
+      filteredProblemsId = problemStatementsDynamic.map(
+        item => item.problem_statement
+      );
+    } else if (filter === "Read") {
+      filteredProblemsId = problemStatementsDynamic
+        .filter(item => item.read === true)
+        .map(item => item.problem_statement);
+    } else if (filter === "Unread") {
+      filteredProblemsId = problemStatementsDynamic
+        .filter(item => item.read === false)
+        .map(item => item.problem_statement);
+    } else if (filter === "In-Progress") {
+      filteredProblemsId = problemStatementsDynamic
+        .filter(item => item.status === "In-Progress")
+        .map(item => item.problem_statement);
+    } else if (filter === "Rejected") {
+      filteredProblemsId = problemStatementsDynamic
+        .filter(item => item.status === "Rejected")
+        .map(item => item.problem_statement);
+    } else if (filter === "Selected") {
+      filteredProblemsId = problemStatementsDynamic
+        .filter(item => item.status === "Selected")
+        .map(item => item.problem_statement);
+    }
+
+    const filtered_set = problemStatementsStatic.filter(item =>
+      filteredProblemsId.includes(item.id)
+    );
+
+    return filtered_set;
+  };
 
   const domainOptions = [
-    ...new Set(problemStatementsStatic.map(item => item.domain_bucket))
+    ...new Set(filteredProblems(showing).map(item => item.domain_bucket))
   ];
 
   const categoryOptions = [
-    ...new Set(problemStatementsStatic.map(item => item.category))
+    ...new Set(filteredProblems(showing).map(item => item.category))
   ];
 
   return (
     <ReactTable
-      data={problemStatementsStatic.sort((a, b) => a.id - b.id)}
+      data={filteredProblems(showing).sort((a, b) => a.id - b.id)}
       filterable
       columns={[
         {
