@@ -46,40 +46,36 @@ const ProblemStatementDetail = ({ match, location }) => {
       <div className="description">
         <strong>Description:</strong>
         <p>
-          Better and faster emergency care during accidents and vehicle impact •
-          Problem statement in Description o During accidents while we have
-          sophisticated technology that opens airbags , add functionality that
-          can start recording and inform the closest emergency service care of
-          the incident o Share Location, situation within the accident spot ,
-          broadcast images, videos o Audio Video Signal Transmitter/ Store
-          during any impact in the vehicle and calling out for emergency care o
-          Ability to inform the closest police station, hospital, fire
-          brigade—GPS location closest proximity guard or govt office to rush
-          emergency care o In current situation it requires someone to call the
-          emergency service and delays in calling for care , results in loss of
-          life . with this device and service the call is automatically made and
-          emergency care can be provided promptly o Evaluate the ease of
-          connecting the device with the car easily externally, requires OEM
-          support to develop such compatible cars • Purpose of this analysis and
-          who will benefit o Person who meets with the accident and facility for
-          the nearest emergency care to respond to the situation in a timely
-          fashion o Govt can benefit by providing the device on rent in certain
-          specific areas that are accident prone – and earn additional income o
-          Govt agencies can start building net income by dealing in such devices
-          and auxiliary services o OEMS – additional charge for service •
-          Lateral Solutions where similar solution can be extrapolated o Car
-          Theft or Window Windshield breaking o Car break down o Home Safety –
-          breaking • How does it help the nation o Better and faster emergency
-          care • Practical and reasons why this idea could be a challenge o
-          Device manufacturing that works across regions , network connectivity
-          o Economically viable in managing the security of such devices o Law
-          Suit if the device did not work in an accident o OEM’s to modify car
-          design to easily integrate with such devices , externally and easily
-          plugin the device • Domain Bucket o Vehicles o Emergency care •
-          Technology Bucket o Integration across systems – Integration platform
-          across systems with security model for data extraction o IOT o
-          Analytics & Data Science (if possible) - Bigdata/Hadoop, AI / ML o
-          Data Aggregation o Visualization
+          {`In Today’s world with so many cars, models in the market, it is hard
+          to find out which car has a high maintenance cost/index that is
+          authentic source.\n•\tProblem statement in Description \no\tSystem
+          that shows the health and Maintenance Index of various components of
+          car models or car parts based on multiple factors\no\tThis will help
+          new buyers to understand the maintenance costs of a certain model and
+          probability of which car part requires more often servicing /change,
+          OEM’s to understand which part is requiring frequent change and needs
+          to be recalled and made better in the new models \no\tVehicle
+          maintenance patterns across car models by mileage, usage , age of the
+          vehicle , regional patterns across dealers, service stations and car
+          manufacturer\n•\tPurpose and who will benefit\no\tConsumers so they
+          know which car has a higher maintenance and maintenance index.\no\tCar
+          Manufacturers , so they know which parts are getting serviced often
+          based on the part change\n•\tHow does it help the nation\no\tBetter
+          understanding for consumers on which car to purchase with low Vehicle
+          Maintenance Index\no\tGovt has better understanding of car maintenance
+          index before approving cars on the Road (ARAI Authority)\n•\tPractical
+          and reasons why this idea could be a challenge from Implementation
+          \no\tData Challenge : Build a dealer/service station network , OEM,
+          consumers who can feed data into the system – without data this
+          solution will not work\no\tAbility to integrate this solution easily
+          with the current systems which can collate the data\no\tMarketing
+          challenge : Owner within the Govt to take this ahead and invest this
+          product\no\tPolitical : OEM’s might not want such a system to be
+          developed.\n•\tDomain Bucket \no\tTransport , Vehicles \n•\tTechnology
+          Bucket \no\tIntegration across systems – Integration platform across
+          systems with security model for data extraction \no\tAnalytics & Data
+          Science (if possible) - Bigdata/Hadoop, AI / ML \no\tData Aggregation
+          \no\tVisualization`}
         </p>
       </div>
       <br />

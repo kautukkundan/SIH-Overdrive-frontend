@@ -18,6 +18,7 @@ import { fetchUserDetails } from "../../services/userService";
 import swal from "sweetalert";
 import { getNotifications } from "../../services/notificationService";
 import { getTeams, getTeamMates } from "../../services/teamService";
+import { getStaticProblems } from "../../services/problemStatementService";
 
 const Home = () => {
   const history = useHistory();
@@ -29,6 +30,10 @@ const Home = () => {
   const setAllTeams = useStoreActions(action => action.team.setAllTeams);
   const setAllTeamMates = useStoreActions(
     action => action.team.setAllTeamMates
+  );
+
+  const setAllStaticProblems = useStoreActions(
+    action => action.problems.setAllStaticProblems
   );
 
   const [loading, setLoading] = useState(false);
@@ -44,6 +49,18 @@ const Home = () => {
         "error"
       );
     }
+  };
+
+  const getAllStaticProblems = async () => {
+    const static_problems = localStorage.static_problems;
+    if (!static_problems) {
+      const response = await getStaticProblems();
+      if (response.status === 200) {
+        static_problems = JSON.stringify(response.data);
+        localStorage.setItem("static_problems", static_problems);
+      }
+    }
+    setAllStaticProblems(JSON.parse(static_problems));
   };
 
   const getAllNotifications = async teamId => {
@@ -86,6 +103,9 @@ const Home = () => {
       setLoading(true);
       await setToken(userToken);
       await setUserDetails(userToken);
+
+      getAllStaticProblems();
+
       const current_team_id = await getAllTeams();
       if (current_team_id) {
         await getAllTeamMates(current_team_id);
@@ -100,7 +120,7 @@ const Home = () => {
       dataFetcher();
     }
     //eslint-disable-next-line
-  }, [history]);
+  }, []);
 
   return loading ? (
     <Dimmer active inverted>

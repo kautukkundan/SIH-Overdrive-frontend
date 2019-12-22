@@ -3,5 +3,6 @@ export default {
   CREATE_NEW_USER: "/register/",
   USER_DETAILS: "/teammember/",
   TEAM_OPS: "/team/",
-  NOTIFICATIONS: "/notification/"
+  NOTIFICATIONS: "/notification/",
+  PROBLEMS: "/problem_statement/"
 };

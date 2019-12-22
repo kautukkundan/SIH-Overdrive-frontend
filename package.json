@@ -16,7 +16,8 @@
     "react-table": "^6.10.3",
     "react-toastify": "^5.4.1",
     "semantic-ui-react": "^0.88.2",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "unescape-js": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
