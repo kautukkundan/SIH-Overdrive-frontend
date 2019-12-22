@@ -236,7 +236,7 @@ const ProblemStatementsTable = () => {
         } else if (status === "Selected") {
           style["borderLeft"] = `15px solid #028154`;
         } else if (status === "Neutral") {
-          style["borderLeft"] = `15px solid black`;
+          style["paddingLeft"] = `15px`;
         }
         return { style };
       }}
