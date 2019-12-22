@@ -6,12 +6,14 @@ const ProblemNavigation = props => {
   const history = useHistory();
 
   const changeProblem = to => {
-    if (to === "next") {
+    if (to === "next" && parseInt(props.id) < parseInt(props.max)) {
       history.push(`/problem/${parseInt(props.id) + 1}`);
-    } else if (to === "prev" && props.id > 1) {
+    } else if (to === "prev" && parseInt(props.id) > 1) {
       history.push(`/problem/${parseInt(props.id) - 1}`);
+    } else if (to === "prev" && parseInt(props.id) <= 1) {
+      history.push(`/problem/${parseInt(props.max)}`);
     } else {
-      return;
+      history.push(`/problem/1`);
     }
   };
 
@@ -38,11 +40,7 @@ const ProblemNavigation = props => {
         }}
         content="All"
         trigger={
-          <Icon
-            name="dot circle outline"
-            size="big"
-            onClick={() => history.push("/")}
-          />
+          <Icon name="home" size="big" onClick={() => history.push("/")} />
         }
       />
 

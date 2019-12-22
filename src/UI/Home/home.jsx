@@ -52,7 +52,7 @@ const Home = () => {
   };
 
   const getAllStaticProblems = async () => {
-    const static_problems = localStorage.static_problems;
+    let static_problems = localStorage.static_problems;
     if (!static_problems) {
       const response = await getStaticProblems();
       if (response.status === 200) {

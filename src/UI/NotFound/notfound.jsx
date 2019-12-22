@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
@@ -20,7 +21,7 @@ const NotFound = () => {
       <div style={{ fontSize: "20px", textAlign: "center" }}>
         404! The Page You requested cannot be found. <br />
         <br />
-        Go <a href="/">Home</a> Instead
+        Go <Link to="/">Home</Link> Instead
       </div>
     </div>
   );
