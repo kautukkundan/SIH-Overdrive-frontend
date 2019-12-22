@@ -221,6 +221,31 @@ const ProblemStatementsTable = () => {
       style={{
         maxHeight: "85vh"
       }}
+      getTrProps={(state, rowInfo, column) => {
+        const status =
+          rowInfo &&
+          problemStatementsDynamic.filter(
+            item => item.problem_statement === rowInfo.original.id
+          )[0].status;
+
+        let style = {};
+        if (status === "In-Progress") {
+          style["borderLeft"] = `15px solid #ED961B`;
+        } else if (status === "Rejected") {
+          style["borderLeft"] = `15px solid #ED553B`;
+        } else if (status === "Selected") {
+          style["borderLeft"] = `15px solid #028154`;
+        } else if (status === "Neutral") {
+          style["borderLeft"] = `15px solid black`;
+        }
+        return { style };
+      }}
+      getTheadTrProps={(state, rowInfo, column) => {
+        return { style: { marginLeft: "15px" } };
+      }}
+      getTheadFilterTrProps={(state, rowInfo, column) => {
+        return { style: { marginLeft: "15px" } };
+      }}
     />
   );
 };
