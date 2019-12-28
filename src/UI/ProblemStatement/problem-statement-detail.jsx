@@ -25,11 +25,7 @@ const ProblemStatementDetail = ({ match, location }) => {
     <div className="problem-statement-details-body">
       <div className="meta">
         <div className="image">
-          <img
-            src="https://www.sih.gov.in/uploads/logo/no_image.png"
-            height="50px"
-            alt=""
-          />
+          <img src={thisProblem[0].img} height="50px" alt="" />
         </div>
         <div className="text">
           <div className="org">{thisProblem[0].organization}</div>
@@ -37,7 +33,10 @@ const ProblemStatementDetail = ({ match, location }) => {
         </div>
       </div>
       <br />
-      <Label color="green" size="large">
+      <Label
+        color={thisProblem[0].category === "Software" ? "green" : "orange"}
+        size="large"
+      >
         {thisProblem[0].category}
       </Label>
       <Label size="large">{thisProblem[0].domain_bucket}</Label>
@@ -55,6 +54,31 @@ const ProblemStatementDetail = ({ match, location }) => {
       </div>
       <br />
       <br />
+      {thisProblem[0].youtube !== "" && (
+        <div className="description">
+          <strong>Youtube Video:</strong>
+          <br />
+          <a href={thisProblem[0].youtube} target="_blank">
+            {thisProblem[0].youtube}
+          </a>
+          <br />
+          <br />
+          <br />
+        </div>
+      )}
+      {thisProblem[0].dataset_link !== "" && (
+        <div className="description">
+          <strong>Dataset Link:</strong>
+          <br />
+          <a href={thisProblem[0].dataset_link} target="_blank">
+            {thisProblem[0].dataset_link}
+          </a>
+          <br />
+          <br />
+          <br />
+        </div>
+      )}
+
       <div className="files">
         <strong>Your Files:</strong>
         <br />
