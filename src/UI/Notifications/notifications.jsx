@@ -15,7 +15,7 @@ const Notifications = () => {
   return (
     <div className="notifications-body">
       <div className="title">
-        Notifications for {current_team.name} |{" "}
+        <Icon name="bell" /> Notifications for {current_team.name} |{" "}
         <span
           style={{ color: "#1f70bf", cursor: "pointer" }}
           onClick={() => history.push("/")}

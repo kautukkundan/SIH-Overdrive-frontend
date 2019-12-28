@@ -11,21 +11,29 @@ const UserInfo = () => {
   const notifications = useStoreState(state => state.notifications.all);
 
   return (
-    <Popup
-      inverted
-      trigger={
-        <div className="info user-info">
-          <div className="text">
-            <div className="name">
-              {user.firstname} {user.lastname} &nbsp;&nbsp;
-              {notifications && notifications.length > 0 ? (
-                <Label color="red" circular style={{ display: "" }}>
-                  <Icon name="bell" /> {notifications.length}
-                </Label>
-              ) : null}
-            </div>
-            <div className="email">{user.email}</div>
-          </div>
+    <div className="info user-info">
+      <div className="text">
+        <div className="name">
+          {user.firstname} {user.lastname} &nbsp;&nbsp;
+          {notifications && notifications.length > 0 ? (
+            <Label
+              color="red"
+              circular
+              style={{ display: "", cursor: "pointer" }}
+              onClick={() => {
+                history.push("/notifications");
+              }}
+            >
+              <Icon name="bell" /> {notifications.length}
+            </Label>
+          ) : null}
+        </div>
+        <div className="email">{user.email}</div>
+      </div>
+      <Popup
+        inverted
+        hoverable
+        trigger={
           <div className="avatar">
             <div
               className="avatar-image"
@@ -34,34 +42,34 @@ const UserInfo = () => {
               }}
             ></div>
           </div>
-        </div>
-      }
-      content={
-        <div style={{ width: "250px", textAlign: "center" }}>
-          <Button
-            fluid
-            size="small"
-            color="teal"
-            content="Sign-Out"
-            onClick={() => {
-              history.push("/logout");
-            }}
-          ></Button>
-          <br />
-          <Button
-            fluid
-            size="small"
-            color="blue"
-            content="Notifications"
-            onClick={() => {
-              history.push("/notifications");
-            }}
-          />
-        </div>
-      }
-      position="top center"
-      on="click"
-    />
+        }
+        content={
+          <div style={{ width: "250px", textAlign: "center" }}>
+            <Button
+              fluid
+              size="small"
+              color="blue"
+              content="Contact Developers"
+              onClick={() => {
+                window.open("mailto:sihoverdrive@gmail.com", "_blank");
+              }}
+            ></Button>
+            <br />
+            <Button
+              fluid
+              size="small"
+              color="teal"
+              content="Sign-Out"
+              onClick={() => {
+                history.push("/logout");
+              }}
+            ></Button>
+          </div>
+        }
+        position="top center"
+        // on="click"
+      />
+    </div>
   );
 };
 

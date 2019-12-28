@@ -32,7 +32,6 @@
 .user-info {
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .user-info > .text {
@@ -53,6 +52,7 @@
 .user-info > .avatar {
   font-size: 20px;
   line-height: 20px;
+  cursor: pointer;
 }
 
 .team-info > .team {
