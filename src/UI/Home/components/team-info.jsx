@@ -6,6 +6,7 @@ import { getNotifications } from "../../../services/notificationService";
 
 import { Dropdown, Loader, Dimmer } from "semantic-ui-react";
 import { getDynamicProblems } from "../../../services/problemStatementService";
+import WelcomeModal from "./welcome-modal";
 
 const TeamInfo = () => {
   const teams = useStoreState(state => state.team.all_teams);
@@ -102,7 +103,24 @@ const TeamInfo = () => {
         </React.Fragment>
       ) : (
         <div className="team-info info">
-          + Create or join a team to get started
+          <WelcomeModal />
+          <div className="stuff">
+            <strong style={{ fontSize: "150%" }}>
+              Create or join a team to get started
+            </strong>
+            <br />
+            <br />
+            <p>
+              1. Problem Statements will be visible as soon as you create or
+              join a new team.
+            </p>
+            <p>
+              2. You can start working on problem statements (mark progress,
+              add/remove comments) right away
+            </p>
+            <p>3. You can work solo and add team members later</p>
+            <p>4. Click on New Team/Join Team 😁</p>
+          </div>
         </div>
       )}
     </React.Fragment>
