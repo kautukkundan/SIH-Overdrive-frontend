@@ -119,7 +119,7 @@ const TeamInfo = () => {
               add/remove comments) right away
             </p>
             <p>3. You can work solo and add team members later</p>
-            <p>4. Click on New Team/Join Team 😁</p>
+            <p>4. Click on New Team/Join Team :D</p>
           </div>
         </div>
       )}
