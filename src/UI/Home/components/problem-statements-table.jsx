@@ -5,7 +5,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 import { Form, Radio } from "semantic-ui-react";
-import { useStoreState } from "easy-peasy";
+import { useStoreState, useStoreActions } from "easy-peasy";
 
 const ProblemStatementsTable = () => {
   let history = useHistory();
@@ -14,6 +14,25 @@ const ProblemStatementsTable = () => {
     state => state.problems.dynamic
   );
   const showing = useStoreState(state => state.problems.showing);
+
+  const updateStatus = useStoreActions(action => action.problems.updateStatus);
+  const updateRead = useStoreActions(action => action.problems.updateRead);
+
+  const handleStatusChange = (problem_id, new_status) => {
+    const payload = {
+      problem_id: problem_id,
+      status: new_status
+    };
+    updateStatus(payload);
+  };
+
+  const handleReadChange = (problem_id, new_read) => {
+    const payload = {
+      problem_id: problem_id,
+      read: new_read
+    };
+    updateRead(payload);
+  };
 
   const filteredProblems = filter => {
     let filteredProblemsId = [];
@@ -77,9 +96,13 @@ const ProblemStatementsTable = () => {
           Cell: props => (
             <input
               type="checkbox"
+              checked={
+                problemStatementsDynamic.filter(
+                  item => item.problem_statement === props.original.id
+                )[0].read
+              }
               onChange={e => {
-                console.log(props.original.id);
-                console.log(e.target.checked);
+                handleReadChange(props.original.id, e.target.checked);
               }}
             />
           ),
@@ -189,9 +212,32 @@ const ProblemStatementsTable = () => {
             <div>
               <Form.Field>
                 <Radio
+                  label="Neutral"
+                  name={`radio-${props.original.id}`}
+                  value="Neutral"
+                  checked={
+                    problemStatementsDynamic.filter(
+                      item => item.problem_statement === props.original.id
+                    )[0].status === "Neutral"
+                  }
+                  onChange={(e, value) => {
+                    handleStatusChange(props.original.id, value.value);
+                  }}
+                />
+              </Form.Field>
+              <Form.Field>
+                <Radio
                   label="Rejected"
                   name={`radio-${props.original.id}`}
-                  value="rejected"
+                  value="Rejected"
+                  checked={
+                    problemStatementsDynamic.filter(
+                      item => item.problem_statement === props.original.id
+                    )[0].status === "Rejected"
+                  }
+                  onChange={(e, value) => {
+                    handleStatusChange(props.original.id, value.value);
+                  }}
                 />
               </Form.Field>
               <Form.Field>
@@ -199,6 +245,14 @@ const ProblemStatementsTable = () => {
                   label="In-Progress"
                   name={`radio-${props.original.id}`}
                   value="In-Progress"
+                  checked={
+                    problemStatementsDynamic.filter(
+                      item => item.problem_statement === props.original.id
+                    )[0].status === "In-Progress"
+                  }
+                  onChange={(e, value) => {
+                    handleStatusChange(props.original.id, value.value);
+                  }}
                 />
               </Form.Field>
               <Form.Field>
@@ -206,6 +260,14 @@ const ProblemStatementsTable = () => {
                   label="Selected"
                   name={`radio-${props.original.id}`}
                   value="Selected"
+                  checked={
+                    problemStatementsDynamic.filter(
+                      item => item.problem_statement === props.original.id
+                    )[0].status === "Selected"
+                  }
+                  onChange={(e, value) => {
+                    handleStatusChange(props.original.id, value.value);
+                  }}
                 />
               </Form.Field>
             </div>
