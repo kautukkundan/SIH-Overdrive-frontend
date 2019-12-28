@@ -8,6 +8,7 @@ import MyFeed from "./components/feed";
 import ProblemNavigation from "./components/problem-navigation";
 import { useStoreState } from "easy-peasy";
 import NotFound from "../NotFound/notfound";
+import StatusElement from "./components/statuses";
 
 const ProblemStatementDetail = ({ match, location }) => {
   let { id } = useParams();
@@ -89,6 +90,9 @@ const ProblemStatementDetail = ({ match, location }) => {
         </div>
 
         <div className="column-2">
+          <StatusElement />
+          <br />
+          <br />
           <div className="files">
             <strong>Your Files:</strong>
             <br />

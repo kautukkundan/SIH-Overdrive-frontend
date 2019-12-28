@@ -79,3 +79,12 @@
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
+
+.status-element > .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-element > .top > strong {
+  font-size: 150%;
+}
