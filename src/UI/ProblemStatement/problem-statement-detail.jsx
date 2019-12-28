@@ -42,57 +42,61 @@ const ProblemStatementDetail = ({ match, location }) => {
       <Label size="large">{thisProblem[0].domain_bucket}</Label>
       <br />
       <br />
-      <div className="title">
-        <strong>Title:</strong>
-        <p>{thisProblem[0].title}</p>
-      </div>
-      <br />
-      <br />
-      <div className="description">
-        <strong>Description:</strong>
-        <p>{thisProblem[0].description}</p>
-      </div>
-      <br />
-      <br />
-      {thisProblem[0].youtube !== "" && (
-        <div className="description">
-          <strong>Youtube Video:</strong>
-          <br />
-          <a href={thisProblem[0].youtube} target="_blank">
-            {thisProblem[0].youtube}
-          </a>
+      <div className="two-column">
+        <div className="column-1">
+          <div className="title">
+            <strong>Title:</strong>
+            <p>{thisProblem[0].title}</p>
+          </div>
           <br />
           <br />
-          <br />
+          {thisProblem[0].youtube !== "" && (
+            <div className="description">
+              <strong>Youtube Video:</strong>
+              <br />
+              <a href={thisProblem[0].youtube} target="_blank">
+                {thisProblem[0].youtube}
+              </a>
+              <br />
+              <br />
+              <br />
+            </div>
+          )}
+          {thisProblem[0].dataset_link !== "" && (
+            <div className="description">
+              <strong>Dataset Link:</strong>
+              <br />
+              <a href={thisProblem[0].dataset_link} target="_blank">
+                {thisProblem[0].dataset_link}
+              </a>
+              <br />
+              <br />
+              <br />
+            </div>
+          )}
+          <div className="description">
+            <strong>Description:</strong>
+            <pre className="unformatted">{thisProblem[0].description}</pre>
+          </div>
         </div>
-      )}
-      {thisProblem[0].dataset_link !== "" && (
-        <div className="description">
-          <strong>Dataset Link:</strong>
-          <br />
-          <a href={thisProblem[0].dataset_link} target="_blank">
-            {thisProblem[0].dataset_link}
-          </a>
-          <br />
-          <br />
-          <br />
-        </div>
-      )}
 
-      <div className="files">
-        <strong>Your Files:</strong>
-        <br />
-        <br />
-        <div className="flex" style={{ display: "flex" }}>
-          <File type={"file word"} />
-          <File type={"file powerpoint"} />
+        <div className="column-2">
+          <div className="files">
+            <strong>Your Files:</strong>
+            <br />
+            <br />
+            <div className="flex" style={{ display: "flex" }}>
+              <File type={"file word"} />
+              <File type={"file powerpoint"} />
+            </div>
+          </div>
+          <br />
+          <br />
+          <div className="comments">
+            <strong>Comments:</strong>
+            <MyFeed />
+          </div>
         </div>
-      </div>
-      <br />
-      <br />
-      <div className="comments">
-        <strong>Comments:</strong>
-        <MyFeed />
       </div>
     </div>
   ) : (

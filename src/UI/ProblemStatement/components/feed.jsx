@@ -57,7 +57,7 @@ const MyFeed = () => {
       <Input
         action={{ icon: "caret right" }}
         placeholder="Add Comment..."
-        style={{ width: "550px" }}
+        fluid
       />
     </Feed>
   );

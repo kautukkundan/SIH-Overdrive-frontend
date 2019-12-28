@@ -24,19 +24,19 @@
   margin-left: 10px;
 }
 
-.problem-statement-details-body > .title > p {
+.problem-statement-details-body > .two-column > * > .title > p {
   font-size: 150%;
   padding: 0;
   margin: 0;
 }
 
-.problem-statement-details-body > * > strong {
+.problem-statement-details-body > .two-column > * > * > strong {
   font-size: 150%;
   padding: 0;
   margin: 0;
 }
 
-.problem-statement-details-body > .description > p {
+.problem-statement-details-body > .two-column > * > .description > p {
   font-size: 110%;
   padding: 0;
   margin: 0;
@@ -53,4 +53,29 @@
   border-radius: 5px;
   background: rgb(235, 235, 235);
   margin-right: 10px;
+}
+
+.two-column {
+  display: flex;
+}
+
+.column-1 {
+  width: 60%;
+}
+
+.column-2 {
+  width: 40%;
+  margin-left: 20px;
+  padding: 20px 20px;
+  background: rgb(245, 245, 245);
+  border-radius: 5px;
+}
+
+.unformatted {
+  font-family: "Product Sans";
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
