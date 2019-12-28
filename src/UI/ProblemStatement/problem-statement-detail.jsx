@@ -54,7 +54,11 @@ const ProblemStatementDetail = ({ match, location }) => {
             <div className="description">
               <strong>Youtube Video:</strong>
               <br />
-              <a href={thisProblem[0].youtube} target="_blank">
+              <a
+                href={thisProblem[0].youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {thisProblem[0].youtube}
               </a>
               <br />
@@ -66,7 +70,11 @@ const ProblemStatementDetail = ({ match, location }) => {
             <div className="description">
               <strong>Dataset Link:</strong>
               <br />
-              <a href={thisProblem[0].dataset_link} target="_blank">
+              <a
+                href={thisProblem[0].dataset_link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {thisProblem[0].dataset_link}
               </a>
               <br />

@@ -13,6 +13,12 @@ const Logout = () => {
   const setNotifications = useStoreActions(
     action => action.notifications.setNotifications
   );
+  const setAllDynamicProblems = useStoreActions(
+    action => action.problems.setAllDynamicProblems
+  );
+  const setAllStaticProblems = useStoreActions(
+    action => action.problems.setAllStaticProblems
+  );
 
   useEffect(() => {
     logout();
@@ -27,6 +33,8 @@ const Logout = () => {
       key: null,
       team_mates: []
     });
+    setAllDynamicProblems([]);
+    setAllStaticProblems([]);
     setNotifications(null);
     history.push("/login");
     //eslint-disable-next-line

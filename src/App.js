@@ -7,10 +7,14 @@ import globalStore from "./stores/globalStore";
 import Login from "./UI/Login/login";
 import Logout from "./UI/Login/logout";
 import Home from "./UI/Home/home";
+import MobileHome from "./UI/Home/mobile-home";
 
 const store = createStore(globalStore);
 
 function App() {
+  if (window.innerWidth < 500) {
+    return <MobileHome />;
+  }
   return (
     <StoreProvider store={store}>
       <BrowserRouter>

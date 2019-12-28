@@ -77,9 +77,6 @@ const ProblemStatementsTable = () => {
           Cell: props => (
             <input
               type="checkbox"
-              name="read"
-              value="checked"
-              checked={props.value}
               onChange={e => {
                 console.log(props.original.id);
                 console.log(e.target.checked);
