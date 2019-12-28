@@ -48,10 +48,11 @@ const CreateTeam = () => {
         </Button>
       }
       closeIcon
+      className="small-modal"
     >
       <Header>Create New Team</Header>
       <Modal.Content>
-        - Enter Team Name
+        - Enter Team Name (You cannot edit team name later)
         <br />
         <br />
         <Form>

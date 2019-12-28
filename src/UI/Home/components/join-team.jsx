@@ -47,6 +47,7 @@ const JoinTeam = () => {
         </Button>
       }
       closeIcon
+      className="small-modal"
     >
       <Header>Join New Team Using Access Code</Header>
       <Modal.Content>

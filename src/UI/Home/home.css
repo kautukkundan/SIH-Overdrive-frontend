@@ -114,3 +114,7 @@
   background-repeat: no-repeat;
   border-radius: 50%;
 }
+
+.small-modal {
+  width: 50vw !important;
+}
