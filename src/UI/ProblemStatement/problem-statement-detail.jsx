@@ -99,7 +99,7 @@ const ProblemStatementDetail = ({ match, location }) => {
         </div>
 
         <div className="column-2">
-          <StatusElement />
+          <StatusElement problem_id={parseInt(id)} />
           <br />
           <br />
           <div className="files">
