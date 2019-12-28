@@ -90,7 +90,7 @@ const ProblemStatementsTable = () => {
         },
         {
           Header: "Logo",
-          accessor: "logo",
+          accessor: "img",
           width: 100,
           Cell: props => <img src={props.value} height="50px" alt="" />,
           filterable: false

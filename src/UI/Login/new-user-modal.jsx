@@ -18,7 +18,7 @@ const NewUserModal = () => {
   const handleSubmit = async () => {
     if (email.match(`[a-zA-Z0-9]+@[a-z]+.(com|in|net|org|edu)`) === null) {
       swal("Email Error", "Please Enter Email in the proper format", "error");
-    } else if (firstName === "" && lastName === "") {
+    } else if (firstName === "" || lastName === "") {
       swal("Name Error", "Empty First Or Last Name", "error");
     } else if (gender === "") {
       swal("Gender Error", "Gender Not Selected", "error");
@@ -38,6 +38,12 @@ const NewUserModal = () => {
       if (response.status === 201) {
         swal("Account Created", "Login to Continue.", "success");
         setOpen(false);
+      } else if (
+        response.status === 400 &&
+        response.data.user.username[0] ===
+          "A user with that username already exists."
+      ) {
+        swal("Oops!", "Email ID Already Registered by another user", "warning");
       } else {
         swal("Oops!", "Something went wrong! Please Retry", "error");
       }

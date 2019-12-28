@@ -36,7 +36,11 @@ const LoginBox = () => {
       if (response.status === 200) {
         setToken(response.data.token);
         history.push("/");
-      } else if (response.status === 401) {
+      } else if (
+        response.status === 400 &&
+        response.data.non_field_errors[0] ===
+          "Unable to log in with provided credentials."
+      ) {
         swal("Error", "Email or Password seems incorrect!", "error");
       } else {
         swal("Oops!", "Something went wrong! Please Retry", "error");
