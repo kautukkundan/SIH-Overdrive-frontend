@@ -4,7 +4,10 @@ import { Icon } from "semantic-ui-react";
 
 const File = props => {
   return (
-    <div className="file-container">
+    <div
+      className="file-container"
+      onClick={() => (props.link ? window.open(props.link, "_blank") : null)}
+    >
       <Icon name={props.type} />
     </div>
   );

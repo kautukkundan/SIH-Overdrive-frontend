@@ -9,13 +9,22 @@ import ProblemNavigation from "./components/problem-navigation";
 import { useStoreState } from "easy-peasy";
 import NotFound from "../NotFound/notfound";
 import StatusElement from "./components/statuses";
+import FileLinksModal from "./components/files-links-modal";
 
 const ProblemStatementDetail = ({ match, location }) => {
   let { id } = useParams();
 
   const problemStatementsStatic = useStoreState(state => state.problems.static);
+  const problemStatementsDynamic = useStoreState(
+    state => state.problems.dynamic
+  );
+
   const thisProblem = problemStatementsStatic.filter(item => {
     return item.id === parseInt(id);
+  });
+
+  const thisProblemDynamic = problemStatementsDynamic.filter(item => {
+    return item.problem_statement === parseInt(id);
   });
 
   if (id > problemStatementsStatic.length) {
@@ -94,12 +103,22 @@ const ProblemStatementDetail = ({ match, location }) => {
           <br />
           <br />
           <div className="files">
-            <strong>Your Files:</strong>
+            <strong>
+              Your Files:{" "}
+              <FileLinksModal
+                presentation={thisProblemDynamic[0].presentation}
+                document={thisProblemDynamic[0].document}
+                problem_id={parseInt(id)}
+              />
+            </strong>
             <br />
             <br />
             <div className="flex" style={{ display: "flex" }}>
-              <File type={"file word"} />
-              <File type={"file powerpoint"} />
+              <File type={"file word"} link={thisProblemDynamic[0].document} />
+              <File
+                type={"file powerpoint"}
+                link={thisProblemDynamic[0].presentation}
+              />
             </div>
           </div>
           <br />

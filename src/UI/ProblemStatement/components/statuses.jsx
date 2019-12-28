@@ -26,7 +26,7 @@ const StatusElement = () => {
         <strong>Status</strong>
         <div className="read-unread">
           <input type="checkbox" />
-          <label> Mark as read</label>
+          <label> Read</label>
         </div>
       </div>
       <br />

@@ -53,6 +53,7 @@
   border-radius: 5px;
   background: rgb(235, 235, 235);
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .two-column {

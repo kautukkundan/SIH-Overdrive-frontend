@@ -40,5 +40,6 @@ export default {
   post: axios.post,
   put: axios.put,
   delete: axios.delete,
+  patch: axios.patch,
   setUserToken
 };
