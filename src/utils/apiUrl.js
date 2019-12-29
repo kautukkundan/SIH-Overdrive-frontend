@@ -4,5 +4,6 @@ export default {
   USER_DETAILS: "/teammember/",
   TEAM_OPS: "/team/",
   NOTIFICATIONS: "/notification/",
-  PROBLEMS: "/problem_statement/"
+  PROBLEMS: "/problem_statement/",
+  COMMENTS: "/comment/"
 };

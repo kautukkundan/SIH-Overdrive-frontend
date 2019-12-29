@@ -1,57 +1,66 @@
 import React from "react";
 
-import { Feed, Input } from "semantic-ui-react";
+import { Feed, Input, Loader } from "semantic-ui-react";
+import { useStoreState, useStoreActions } from "easy-peasy";
+import { useEffect } from "react";
+import { getComments } from "../../../services/commentService";
 
-const MyFeed = () => {
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+TimeAgo.addLocale(en);
+const timeAgo = new TimeAgo("en-IN");
+
+const MyFeed = props => {
+  const allCommentsOnthis = useStoreState(state => state.comments.all);
+  const setComments = useStoreActions(action => action.comments.setComments);
+  const thisTeam = useStoreState(state => state.team.current_team);
+  const teamMates = useStoreState(state => state.team.current_team.team_mates);
+
+  const fetchComments = async (teamId, problem_id) => {
+    const response = await getComments(teamId, problem_id);
+    if (response.status === 200) {
+      setComments(response.data);
+    }
+  };
+
+  useEffect(() => {
+    fetchComments(thisTeam.id, props.problem_id);
+  }, [props]);
+
   return (
     <Feed>
-      <Feed.Event>
-        <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/justen.jpg" />
-        <Feed.Content>
-          <Feed.Summary>
-            <a href=" ">Kautuk Kundan</a>
-            <Feed.Date>3 days ago</Feed.Date>
-          </Feed.Summary>
-          <Feed.Extra text>
-            Ours is a life of constant reruns. We're always circling back to
-            where we'd we started, then starting all over again. Even if we
-            don't run extra laps that day, we surely will come back for more of
-            the same another day soon.
-          </Feed.Extra>
-        </Feed.Content>
-      </Feed.Event>
+      {allCommentsOnthis.length === 0 ? (
+        <div>
+          No Comments
+          <br />
+        </div>
+      ) : (
+        allCommentsOnthis.map(item => {
+          const user = teamMates.filter(user_item => {
+            return user_item.id === item.teammate;
+          })[0];
 
-      <Feed.Event>
-        <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/joe.jpg" />
-        <Feed.Content>
-          <Feed.Summary>
-            <a href=" ">Bipin Lala</a>
-            <Feed.Date>5 days ago</Feed.Date>
-          </Feed.Summary>
-          <Feed.Extra text>
-            Ours is a life of constant reruns. We're always circling back to
-            where we'd we started, then starting all over again. Even if we
-            don't run extra laps that day, we surely will come back for more of
-            the same another day soon.
-          </Feed.Extra>
-        </Feed.Content>
-      </Feed.Event>
-
-      <Feed.Event>
-        <Feed.Label image="https://react.semantic-ui.com/images/avatar/small/helen.jpg" />
-        <Feed.Content>
-          <Feed.Summary>
-            <a href=" ">Aashita Arora</a>
-            <Feed.Date>5 days ago</Feed.Date>
-          </Feed.Summary>
-          <Feed.Extra text>
-            Ours is a life of constant reruns. We're always circling back to
-            where we'd we started, then starting all over again. Even if we
-            don't run extra laps that day, we surely will come back for more of
-            the same another day soon.
-          </Feed.Extra>
-        </Feed.Content>
-      </Feed.Event>
+          return (
+            <Feed.Event>
+              <Feed.Label
+                image={`https://react.semantic-ui.com/images/avatar/small/${user.team_member.avatar}`}
+              />
+              <Feed.Content>
+                <Feed.Summary>
+                  <span>
+                    {user.team_member.user.first_name}{" "}
+                    {user.team_member.user.last_name}
+                  </span>
+                  <Feed.Date>
+                    {timeAgo.format(new Date(item.updated_at))}
+                  </Feed.Date>
+                </Feed.Summary>
+                <Feed.Extra text>{item.comment}</Feed.Extra>
+              </Feed.Content>
+            </Feed.Event>
+          );
+        })
+      )}
 
       <br />
       <Input

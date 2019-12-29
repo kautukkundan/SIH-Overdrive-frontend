@@ -6,7 +6,7 @@ import { Label, Loader } from "semantic-ui-react";
 import File from "./components/file";
 import MyFeed from "./components/feed";
 import ProblemNavigation from "./components/problem-navigation";
-import { useStoreState } from "easy-peasy";
+import { useStoreState, useStoreActions } from "easy-peasy";
 import NotFound from "../NotFound/notfound";
 import StatusElement from "./components/statuses";
 import FileLinksModal from "./components/files-links-modal";
@@ -132,7 +132,7 @@ const ProblemStatementDetail = ({ match, location }) => {
           <br />
           <div className="comments">
             <strong>Comments:</strong>
-            <MyFeed />
+            <MyFeed problem_id={parseInt(id)} />
           </div>
         </div>
       </div>
