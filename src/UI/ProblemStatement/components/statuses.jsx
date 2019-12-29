@@ -3,6 +3,8 @@ import { Dropdown } from "semantic-ui-react";
 import { useStoreState, useStoreActions, action } from "easy-peasy";
 import { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { updateDynamicProblemsSingle } from "../../../services/problemStatementService";
 
 const progressOptions = [
   {
@@ -33,24 +35,52 @@ const StatusElement = props => {
   );
   const updateStatus = useStoreActions(action => action.problems.updateStatus);
   const updateRead = useStoreActions(action => action.problems.updateRead);
+  const thisTeam = useStoreState(state => state.team.current_team);
 
   const [status, setStatus] = useState("");
   const [viewed, setViewed] = useState("");
 
-  const handleStatusChange = new_status => {
+  const handleStatusChange = async new_status => {
     const payload = {
       problem_id: props.problem_id,
       status: new_status
     };
     updateStatus(payload);
+    const response = await updateDynamicProblemsSingle(
+      thisTeam.id,
+      props.problem_id,
+      { status: new_status, read: true }
+    );
+    if (response.status !== 200) {
+      toast.error("Couldn't Update Status, Please try again", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
   };
 
-  const handleReadChange = new_read => {
+  const handleReadChange = async new_read => {
     const payload = {
       problem_id: props.problem_id,
       read: new_read
     };
     updateRead(payload);
+
+    let dataPacket = { read: new_read };
+
+    if (new_read === false) {
+      dataPacket = { ...dataPacket, status: "Neutral" };
+    }
+
+    const response = await updateDynamicProblemsSingle(
+      thisTeam.id,
+      props.problem_id,
+      dataPacket
+    );
+    if (response.status !== 200) {
+      toast.error("Couldn't Update Status, Please try again", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
   };
 
   useEffect(() => {
