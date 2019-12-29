@@ -14,6 +14,8 @@ export default {
   }),
   setShowing: action((state, showing) => {
     state.showing = showing;
+    let tableBody = document.getElementsByClassName("rt-tbody")[0];
+    tableBody.scrollTop = 0;
   }),
   updateLink: action((state, payload) => {
     const { problem_id, links } = payload;

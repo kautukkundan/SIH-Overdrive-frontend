@@ -152,7 +152,17 @@ const ProblemStatementsTable = () => {
           accessor: "organization",
           width: 150,
           filterMethod: (filter, row) =>
-            row[filter.id].toLowerCase().includes(filter.value.toLowerCase())
+            row[filter.id].toLowerCase().includes(filter.value.toLowerCase()),
+          Filter: ({ filter, onChange }) => (
+            <input
+              onChange={event => onChange(event.target.value)}
+              value={filter ? filter.value : ""}
+              style={{
+                width: "100%"
+              }}
+              placeholder="Search Org..."
+            />
+          )
         },
         {
           Header: "Title",
@@ -167,6 +177,16 @@ const ProblemStatementsTable = () => {
             >
               {props.value}
             </span>
+          ),
+          Filter: ({ filter, onChange }) => (
+            <input
+              onChange={event => onChange(event.target.value)}
+              value={filter ? filter.value : ""}
+              style={{
+                width: "100%"
+              }}
+              placeholder="Search by Keyword..."
+            />
           )
         },
         {
