@@ -109,6 +109,7 @@ const ProblemStatementsTable = () => {
 
   return (
     <ReactTable
+      noDataText="Create a team to view problem statements. You can work solo and add teammates later."
       data={filteredProblems(showing).sort((a, b) => a.id - b.id)}
       filterable
       columns={[
