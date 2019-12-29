@@ -6,6 +6,8 @@ import "react-table/react-table.css";
 
 import { Form, Radio } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
+import { updateDynamicProblemsSingle } from "../../../services/problemStatementService";
+import { toast } from "react-toastify";
 
 const ProblemStatementsTable = () => {
   let history = useHistory();
@@ -17,21 +19,49 @@ const ProblemStatementsTable = () => {
 
   const updateStatus = useStoreActions(action => action.problems.updateStatus);
   const updateRead = useStoreActions(action => action.problems.updateRead);
+  const thisTeam = useStoreState(state => state.team.current_team);
 
-  const handleStatusChange = (problem_id, new_status) => {
+  const handleStatusChange = async (problem_id, new_status) => {
     const payload = {
       problem_id: problem_id,
       status: new_status
     };
     updateStatus(payload);
+    const response = await updateDynamicProblemsSingle(
+      thisTeam.id,
+      problem_id,
+      { status: new_status, read: true }
+    );
+    if (response.status !== 200) {
+      toast.error("Couldn't Update Status, Please try again", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
   };
 
-  const handleReadChange = (problem_id, new_read) => {
+  const handleReadChange = async (problem_id, new_read) => {
     const payload = {
       problem_id: problem_id,
       read: new_read
     };
     updateRead(payload);
+
+    let dataPacket = { read: new_read };
+
+    if (new_read === false) {
+      dataPacket = { ...dataPacket, status: "Neutral" };
+    }
+
+    const response = await updateDynamicProblemsSingle(
+      thisTeam.id,
+      problem_id,
+      dataPacket
+    );
+    if (response.status !== 200) {
+      toast.error("Couldn't Update Status, Please try again", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
   };
 
   const filteredProblems = filter => {
