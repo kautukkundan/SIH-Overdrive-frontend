@@ -63,6 +63,12 @@
   padding: 10px;
   margin-top: 20px;
   color: white;
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.team-member-info::-webkit-scrollbar {
+  display: none;
 }
 
 .team-member-info > .title {

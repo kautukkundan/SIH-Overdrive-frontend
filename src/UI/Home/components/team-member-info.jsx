@@ -11,7 +11,7 @@ const TeamMemberInfo = () => {
   return (
     <div className="team-member-info">
       <p className="title">
-        My Team Members <LeaveTeam />
+        My Team Members [ {currentTeam.team_mates.length} ] <LeaveTeam />
       </p>
 
       {currentTeam.team_mates.map((item, index) => {

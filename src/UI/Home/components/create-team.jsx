@@ -55,7 +55,7 @@ const CreateTeam = () => {
         - Enter Team Name (You cannot edit team name later)
         <br />
         <br />
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <input
             placeholder="Enter Team Name - eg: Champs"
             onChange={e => setTeamName(e.target.value)}

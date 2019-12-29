@@ -56,7 +56,7 @@ const JoinTeam = () => {
         - Obtain the 6 digit team code from the team you wish to join
         <br />
         <br />
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <input
             placeholder="Enter Team Code - eg: QPWOER"
             onChange={e => setTeamCode(e.target.value)}

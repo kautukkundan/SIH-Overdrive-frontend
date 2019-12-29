@@ -4,6 +4,7 @@ import { Feed, Input, Form, Loader } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { getComments, postComments } from "../../../services/commentService";
+import Linkify from "react-linkify";
 
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -20,6 +21,12 @@ const MyFeed = props => {
   const setComments = useStoreActions(action => action.comments.setComments);
   const addNewComment = useStoreActions(
     action => action.comments.addNewComment
+  );
+
+  const componentDecorator = (href, text, key) => (
+    <a href={href} key={key} target="_blank">
+      {text}
+    </a>
   );
 
   const [newComment, setNewComment] = useState("");
@@ -100,7 +107,11 @@ const MyFeed = props => {
                       {timeAgo.format(new Date(item.updated_at))}
                     </Feed.Date>
                   </Feed.Summary>
-                  <Feed.Extra text>{item.comment}</Feed.Extra>
+                  <Feed.Extra text>
+                    <Linkify componentDecorator={componentDecorator}>
+                      {item.comment}
+                    </Linkify>
+                  </Feed.Extra>
                 </Feed.Content>
               </Feed.Event>
             );
