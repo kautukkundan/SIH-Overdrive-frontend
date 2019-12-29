@@ -114,13 +114,15 @@ const ProblemStatementDetail = ({ match, location }) => {
             <br />
             <br />
             <div className="flex" style={{ display: "flex" }}>
-              {thisProblemDynamic[0].document === "" ? null : (
+              {thisProblemDynamic[0].document === "" ||
+              thisProblemDynamic[0].document === null ? null : (
                 <File
                   type={"file word"}
                   link={thisProblemDynamic[0].document}
                 />
               )}
-              {thisProblemDynamic[0].presentation === "" ? null : (
+              {thisProblemDynamic[0].presentation === "" ||
+              thisProblemDynamic[0].presentation === null ? null : (
                 <File
                   type={"file powerpoint"}
                   link={thisProblemDynamic[0].presentation}
