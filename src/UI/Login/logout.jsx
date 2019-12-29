@@ -19,6 +19,7 @@ const Logout = () => {
   const setAllStaticProblems = useStoreActions(
     action => action.problems.setAllStaticProblems
   );
+  const setComments = useStoreActions(action => action.comments.setComments);
 
   useEffect(() => {
     logout();
@@ -35,6 +36,7 @@ const Logout = () => {
     });
     setAllDynamicProblems([]);
     setAllStaticProblems([]);
+    setComments([]);
     setNotifications(null);
     history.push("/login");
     //eslint-disable-next-line

@@ -4,7 +4,6 @@ export default {
   static: [],
   dynamic: [],
   showing: "All",
-  apple: [],
 
   // actions
   setAllStaticProblems: action((state, staticProblems) => {
