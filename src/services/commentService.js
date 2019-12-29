@@ -14,7 +14,7 @@ const getComments = async (teamId, problemId) => {
 
 const postComments = async (teamId, problemId, comment) => {
   const response = await http
-    .post(APIURL.COMMENTS + `/${problemId}/`, {
+    .post(APIURL.COMMENTS + `${problemId}/`, {
       team: teamId,
       comment: comment
     })

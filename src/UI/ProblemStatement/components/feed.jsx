@@ -1,12 +1,13 @@
 import React from "react";
 
-import { Feed, Input, Loader } from "semantic-ui-react";
+import { Feed, Input, Form } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
-import { getComments } from "../../../services/commentService";
+import { getComments, postComments } from "../../../services/commentService";
 
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
+import { useState } from "react";
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-IN");
 
@@ -16,10 +17,24 @@ const MyFeed = props => {
   const thisTeam = useStoreState(state => state.team.current_team);
   const teamMates = useStoreState(state => state.team.current_team.team_mates);
 
+  const [newComment, setNewComment] = useState("");
+
   const fetchComments = async (teamId, problem_id) => {
     const response = await getComments(teamId, problem_id);
     if (response.status === 200) {
       setComments(response.data);
+    }
+  };
+
+  const addComment = async () => {
+    const response = await postComments(
+      thisTeam.id,
+      props.problem_id,
+      newComment
+    );
+    if (response.status === 201) {
+      setNewComment("");
+      console.log(newComment);
     }
   };
 
@@ -35,13 +50,13 @@ const MyFeed = props => {
           <br />
         </div>
       ) : (
-        allCommentsOnthis.map(item => {
+        allCommentsOnthis.map((item, index) => {
           const user = teamMates.filter(user_item => {
             return user_item.id === item.teammate;
           })[0];
 
           return (
-            <Feed.Event>
+            <Feed.Event key={index}>
               <Feed.Label
                 image={`https://react.semantic-ui.com/images/avatar/small/${user.team_member.avatar}`}
               />
@@ -63,11 +78,15 @@ const MyFeed = props => {
       )}
 
       <br />
-      <Input
-        action={{ icon: "caret right" }}
-        placeholder="Add Comment..."
-        fluid
-      />
+      <Form>
+        <Input
+          action={{ icon: "caret right", onClick: () => addComment() }}
+          placeholder="Add Comment..."
+          fluid
+          value={newComment}
+          onChange={e => setNewComment(e.target.value)}
+        />
+      </Form>
     </Feed>
   );
 };
