@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Feed, Input, Form, Loader } from "semantic-ui-react";
+import { Feed, Form, Loader, TextArea, Button, Icon } from "semantic-ui-react";
+import TextareaAutosize from "react-textarea-autosize";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { getComments, postComments } from "../../../services/commentService";
@@ -121,13 +122,24 @@ const MyFeed = props => {
 
         <br />
         <Form>
-          <Input
-            action={{ icon: "caret right", onClick: () => addComment() }}
-            placeholder="Add Comment..."
+          <TextareaAutosize
+            placeholder="Write Here..."
             fluid
             value={newComment}
             onChange={e => setNewComment(e.target.value)}
           />
+          <br />
+          <br />
+          <Button
+            floated="right"
+            icon
+            labelPosition="right"
+            onClick={() => addComment()}
+            size="tiny"
+          >
+            Add Comment
+            <Icon name="caret right" />
+          </Button>
         </Form>
       </Feed>
     );
