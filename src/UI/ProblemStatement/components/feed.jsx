@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Feed, Form, Loader, TextArea, Button, Icon } from "semantic-ui-react";
+import { Feed, Form, Loader, Button, Icon } from "semantic-ui-react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
