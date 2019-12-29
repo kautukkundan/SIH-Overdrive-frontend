@@ -22,6 +22,9 @@ import {
   getStaticProblems,
   getDynamicProblems
 } from "../../services/problemStatementService";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const Home = () => {
   const history = useHistory();

@@ -16,7 +16,9 @@ const NewUserModal = () => {
   const [repassword, setRepassword] = useState("");
 
   const handleSubmit = async () => {
-    if (email.match(`[a-zA-Z0-9]+@[a-z]+.(com|in|net|org|edu)`) === null) {
+    if (
+      email.match(`[a-zA-Z0-9\.\_\-]+@[a-z]+.(com|in|net|org|edu)`) === null
+    ) {
       swal("Email Error", "Please Enter Email in the proper format", "error");
     } else if (firstName === "" || lastName === "") {
       swal("Name Error", "Empty First Or Last Name", "error");

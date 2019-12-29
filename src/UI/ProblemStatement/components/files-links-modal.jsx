@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { updateDynamicProblemsSingle } from "../../../services/problemStatementService";
 import { useStoreState, useStoreActions } from "easy-peasy";
+import { toast } from "react-toastify";
 
 const FileLinksModal = props => {
   const [docLink, setDocLink] = useState("");
@@ -28,10 +29,20 @@ const FileLinksModal = props => {
     const response = await updateDynamicProblemsSingle(
       thisTeam.id,
       props.problem_id,
-      { ...links }
+      links
     );
+
     if (response.status === 200) {
-      alert("Links Updated");
+      toast.success("Links Updated !", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    } else if (response.status === 400) {
+      const data = Object.keys(response.data);
+      data.map(item => {
+        toast.error(`${item} ${response.data[item]}`, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      });
     }
     const payload = {
       problem_id: props.problem_id,

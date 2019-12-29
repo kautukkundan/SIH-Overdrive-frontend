@@ -44,7 +44,8 @@ const getSingleDynamicProblem = async (teamId, problemId) => {
 const updateDynamicProblemsSingle = async (teamId, problemId, data) => {
   const response = await http
     .patch(APIURL.PROBLEMS + `${problemId}/`, {
-      data: { ...data, team: teamId }
+      ...data,
+      team: teamId
     })
     .catch(error => {
       if (error.response) {
