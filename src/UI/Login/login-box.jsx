@@ -17,9 +17,7 @@ const LoginBox = () => {
   const history = useHistory();
 
   const handleSubmit = async () => {
-    if (
-      email.match(`[a-zA-Z0-9\.\_\-]+@[a-z]+.(com|in|net|org|edu)`) === null
-    ) {
+    if (email.match(`[a-zA-Z0-9._-]+@[a-z]+.(com|in|net|org|edu)`) === null) {
       swal(
         "Invalid Email",
         "Please enter your email in the correct format",

@@ -42,6 +42,7 @@ const FileLinksModal = props => {
         toast.error(`${item} ${response.data[item]}`, {
           position: toast.POSITION.TOP_RIGHT
         });
+        return null;
       });
     }
     const payload = {

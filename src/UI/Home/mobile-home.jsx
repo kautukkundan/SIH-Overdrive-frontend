@@ -59,7 +59,10 @@ const MobileHome = () => {
         <br />
         <p>
           The app may work if you switch to desktop view, but it will look UGLY,
-          so please don't do that. 😅
+          so please don't do that.{" "}
+          <span role="img" aria-label="emoji">
+            😅
+          </span>
         </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
-import { useStoreState, useStoreActions, action } from "easy-peasy";
+import { useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
