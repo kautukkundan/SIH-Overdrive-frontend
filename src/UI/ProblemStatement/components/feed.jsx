@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Feed, Input, Form } from "semantic-ui-react";
+import { Feed, Input, Form, Loader } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { getComments, postComments } from "../../../services/commentService";
@@ -8,33 +8,55 @@ import { getComments, postComments } from "../../../services/commentService";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import { useState } from "react";
+import { toast } from "react-toastify";
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-IN");
 
 const MyFeed = props => {
   const allCommentsOnthis = useStoreState(state => state.comments.all);
-  const setComments = useStoreActions(action => action.comments.setComments);
-  const thisTeam = useStoreState(state => state.team.current_team);
+  const me = useStoreState(state => state.user.email);
   const teamMates = useStoreState(state => state.team.current_team.team_mates);
+  const thisTeam = useStoreState(state => state.team.current_team);
+  const setComments = useStoreActions(action => action.comments.setComments);
+  const addNewComment = useStoreActions(
+    action => action.comments.addNewComment
+  );
 
   const [newComment, setNewComment] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const fetchComments = async (teamId, problem_id) => {
+    setLoading(true);
     const response = await getComments(teamId, problem_id);
     if (response.status === 200) {
       setComments(response.data);
     }
+    setLoading(false);
+  };
+
+  const addCommentLocal = () => {
+    const id = teamMates.filter(item => item.team_member.user.email === me)[0]
+      .id;
+    const payload = {
+      teammate: id,
+      comment: newComment,
+      updated_at: new Date()
+    };
+    addNewComment(payload);
   };
 
   const addComment = async () => {
+    addCommentLocal();
+    setNewComment("");
     const response = await postComments(
       thisTeam.id,
       props.problem_id,
       newComment
     );
-    if (response.status === 201) {
-      setNewComment("");
-      console.log(newComment);
+    if (response.status !== 201) {
+      toast.error("Unable to Post Comment!!", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
   };
 
@@ -42,53 +64,61 @@ const MyFeed = props => {
     fetchComments(thisTeam.id, props.problem_id);
   }, [props]);
 
-  return (
-    <Feed>
-      {allCommentsOnthis.length === 0 ? (
-        <div>
-          No Comments
-          <br />
-        </div>
-      ) : (
-        allCommentsOnthis.map((item, index) => {
-          const user = teamMates.filter(user_item => {
-            return user_item.id === item.teammate;
-          })[0];
+  if (loading) {
+    return (
+      <div>
+        <br />
+        <Loader size="medium" inline active />
+      </div>
+    );
+  } else {
+    return (
+      <Feed>
+        {allCommentsOnthis.length === 0 ? (
+          <div>
+            No Comments
+            <br />
+          </div>
+        ) : (
+          allCommentsOnthis.map((item, index) => {
+            const user = teamMates.filter(user_item => {
+              return user_item.id === item.teammate;
+            })[0];
 
-          return (
-            <Feed.Event key={index}>
-              <Feed.Label
-                image={`https://react.semantic-ui.com/images/avatar/small/${user.team_member.avatar}`}
-              />
-              <Feed.Content>
-                <Feed.Summary>
-                  <span>
-                    {user.team_member.user.first_name}{" "}
-                    {user.team_member.user.last_name}
-                  </span>
-                  <Feed.Date>
-                    {timeAgo.format(new Date(item.updated_at))}
-                  </Feed.Date>
-                </Feed.Summary>
-                <Feed.Extra text>{item.comment}</Feed.Extra>
-              </Feed.Content>
-            </Feed.Event>
-          );
-        })
-      )}
+            return (
+              <Feed.Event key={index}>
+                <Feed.Label
+                  image={`https://react.semantic-ui.com/images/avatar/small/${user.team_member.avatar}`}
+                />
+                <Feed.Content>
+                  <Feed.Summary>
+                    <span>
+                      {user.team_member.user.first_name}{" "}
+                      {user.team_member.user.last_name}
+                    </span>
+                    <Feed.Date>
+                      {timeAgo.format(new Date(item.updated_at))}
+                    </Feed.Date>
+                  </Feed.Summary>
+                  <Feed.Extra text>{item.comment}</Feed.Extra>
+                </Feed.Content>
+              </Feed.Event>
+            );
+          })
+        )}
 
-      <br />
-      <Form>
-        <Input
-          action={{ icon: "caret right", onClick: () => addComment() }}
-          placeholder="Add Comment..."
-          fluid
-          value={newComment}
-          onChange={e => setNewComment(e.target.value)}
-        />
-      </Form>
-    </Feed>
-  );
+        <br />
+        <Form>
+          <Input
+            action={{ icon: "caret right", onClick: () => addComment() }}
+            placeholder="Add Comment..."
+            fluid
+            value={newComment}
+            onChange={e => setNewComment(e.target.value)}
+          />
+        </Form>
+      </Feed>
+    );
+  }
 };
-
 export default MyFeed;

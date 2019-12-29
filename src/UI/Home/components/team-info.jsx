@@ -21,12 +21,14 @@ const TeamInfo = () => {
     action => action.problems.setAllDynamicProblems
   );
   const currentTeam = useStoreState(state => state.team.current_team);
+  const setComments = useStoreActions(action => action.comments.setComments);
 
   const [loading, setLoading] = useState(false);
 
   const changeTeam = async team => {
     setLoading(true);
     setCurrentTeam(team);
+    setComments([]);
 
     const getAllTeamMates = async teamId => {
       const response = await getTeamMates(teamId);
