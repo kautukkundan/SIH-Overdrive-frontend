@@ -6,7 +6,10 @@ import { useEffect } from "react";
 
 const WelcomeModal = () => {
   useEffect(() => {
-    ReactGa.pageview("/welcomeModal");
+    ReactGa.event({
+      category: "modal",
+      action: "welcome modal"
+    });
   }, []);
 
   return (
