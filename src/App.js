@@ -11,7 +11,7 @@ import MobileHome from "./UI/Home/mobile-home";
 
 import ReactGa from "react-ga";
 
-ReactGa.initialize(process.env.GA_ID);
+ReactGa.initialize(process.env.REACT_APP_GA_ID);
 
 const store = createStore(globalStore);
 
