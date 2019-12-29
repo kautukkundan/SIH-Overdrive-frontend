@@ -9,6 +9,10 @@ import Logout from "./UI/Login/logout";
 import Home from "./UI/Home/home";
 import MobileHome from "./UI/Home/mobile-home";
 
+import ReactGa from "react-ga";
+
+ReactGa.initialize(process.env.GA_ID);
+
 const store = createStore(globalStore);
 
 function App() {

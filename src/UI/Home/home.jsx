@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
+import ReactGa from "react-ga";
 
 import "./home.css";
 import UserInfo from "./components/user-info";
@@ -46,6 +47,10 @@ const Home = () => {
   );
 
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    ReactGa.pageview("/");
+  }, []);
 
   const setUserDetails = async userToken => {
     const response = await fetchUserDetails(userToken);

@@ -5,6 +5,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { getComments, postComments } from "../../../services/commentService";
+
+import ReactGa from "react-ga";
 import Linkify from "react-linkify";
 
 import TimeAgo from "javascript-time-ago";
@@ -54,6 +56,11 @@ const MyFeed = props => {
   };
 
   const addComment = async () => {
+    ReactGa.event({
+      category: "button",
+      action: "comment created"
+    });
+
     addCommentLocal();
     setNewComment("");
     const response = await postComments(

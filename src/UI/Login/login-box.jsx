@@ -7,6 +7,8 @@ import NewUserModal from "./new-user-modal";
 import { login } from "../../services/authService";
 import { useStoreActions } from "easy-peasy";
 
+import ReactGa from "react-ga";
+
 const LoginBox = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +19,11 @@ const LoginBox = () => {
   const history = useHistory();
 
   const handleSubmit = async () => {
+    ReactGa.event({
+      category: "button",
+      action: "clicked login"
+    });
+
     if (email.match(`[a-zA-Z0-9._-]+@[a-z]+.(com|in|net|org|edu)`) === null) {
       swal(
         "Invalid Email",

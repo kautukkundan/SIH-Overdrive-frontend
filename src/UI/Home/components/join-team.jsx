@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { joinTeam } from "../../../services/teamService";
+import ReactGa from "react-ga";
 
 import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
 
@@ -25,6 +26,10 @@ const JoinTeam = () => {
   };
 
   const handleSubmit = () => {
+    ReactGa.event({
+      category: "button",
+      action: "join team request"
+    });
     if (teamCode.length !== 6) {
       swal(
         "Incorrect Team Code",
@@ -41,7 +46,16 @@ const JoinTeam = () => {
       onClose={() => setOpen(false)}
       open={open}
       trigger={
-        <Button inverted onClick={() => setOpen(true)}>
+        <Button
+          inverted
+          onClick={() => {
+            ReactGa.event({
+              category: "modal",
+              action: "join team modal"
+            });
+            setOpen(true);
+          }}
+        >
           <Icon name="group" />
           JOIN TEAM
         </Button>

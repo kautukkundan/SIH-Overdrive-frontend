@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { logout } from "../../services/authService";
 import { useStoreActions } from "easy-peasy";
 
+import ReactGa from "react-ga";
+
 const Logout = () => {
   const history = useHistory();
 
@@ -20,6 +22,10 @@ const Logout = () => {
     action => action.problems.setAllStaticProblems
   );
   const setComments = useStoreActions(action => action.comments.setComments);
+
+  useEffect(() => {
+    ReactGa.pageview("/logout");
+  }, []);
 
   useEffect(() => {
     logout();

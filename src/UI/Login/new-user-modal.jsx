@@ -3,6 +3,7 @@ import swal from "sweetalert";
 
 import { Modal, Form, Button, Select } from "semantic-ui-react";
 import { registerNewUser } from "../../services/authService";
+import ReactGa from "react-ga";
 
 const NewUserModal = () => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,11 @@ const NewUserModal = () => {
   const [repassword, setRepassword] = useState("");
 
   const handleSubmit = async () => {
+    ReactGa.event({
+      category: "button",
+      action: "sent signup request"
+    });
+
     if (email.match(`[a-zA-Z0-9._-]+@[a-z]+.(com|in|net|org|edu)`) === null) {
       swal("Email Error", "Please Enter Email in the proper format", "error");
     } else if (firstName === "" || lastName === "") {
@@ -65,7 +71,13 @@ const NewUserModal = () => {
         trigger={
           <p
             style={{ color: "#1E88BE", cursor: "pointer" }}
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              ReactGa.event({
+                category: "modal",
+                action: "opened new user modal"
+              });
+              setOpen(true);
+            }}
           >
             New User?
           </p>

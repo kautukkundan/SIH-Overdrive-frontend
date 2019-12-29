@@ -3,6 +3,8 @@ import React from "react";
 import { Icon, Button } from "semantic-ui-react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 
+import ReactGa from "react-ga";
+
 const FilterGroup = () => {
   const problemStatementsDynamic = useStoreState(
     state => state.problems.dynamic
@@ -43,7 +45,13 @@ const FilterGroup = () => {
           labelPosition="left"
           size="small"
           color="teal"
-          onClick={() => setShowing("Read")}
+          onClick={() => {
+            ReactGa.event({
+              category: "filter",
+              action: "read"
+            });
+            setShowing("Read");
+          }}
         >
           <Icon name="eye" />
           Read
@@ -58,7 +66,13 @@ const FilterGroup = () => {
           labelPosition="left"
           size="small"
           color="red"
-          onClick={() => setShowing("Rejected")}
+          onClick={() => {
+            ReactGa.event({
+              category: "filter",
+              action: "rejected"
+            });
+            setShowing("Rejected");
+          }}
         >
           <Icon name="cancel" />
           Rejected
@@ -71,7 +85,13 @@ const FilterGroup = () => {
           labelPosition="left"
           size="small"
           color="yellow"
-          onClick={() => setShowing("In-Progress")}
+          onClick={() => {
+            ReactGa.event({
+              category: "filter",
+              action: "in-progress"
+            });
+            setShowing("In-Progress");
+          }}
         >
           <Icon name="pencil" />
           In-Progress
@@ -84,7 +104,13 @@ const FilterGroup = () => {
           labelPosition="left"
           size="small"
           color="green"
-          onClick={() => setShowing("Selected")}
+          onClick={() => {
+            ReactGa.event({
+              category: "filter",
+              action: "selected"
+            });
+            setShowing("Selected");
+          }}
         >
           <Icon name="check" />
           Selected
@@ -94,7 +120,16 @@ const FilterGroup = () => {
         </Button>
       </Button.Group>
       <Button.Group compact>
-        <Button size="small" onClick={() => setShowing("All")}>
+        <Button
+          size="small"
+          onClick={() => {
+            ReactGa.event({
+              category: "filter",
+              action: "clear"
+            });
+            setShowing("All");
+          }}
+        >
           Remove Filters
         </Button>
       </Button.Group>

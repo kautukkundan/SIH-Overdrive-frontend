@@ -6,6 +6,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { updateDynamicProblemsSingle } from "../../../services/problemStatementService";
 
+import ReactGa from "react-ga";
+
 const progressOptions = [
   {
     key: "Neutral",
@@ -41,6 +43,11 @@ const StatusElement = props => {
   const [viewed, setViewed] = useState("");
 
   const handleStatusChange = async new_status => {
+    ReactGa.event({
+      category: "detailview",
+      action: "status " + new_status
+    });
+
     const payload = {
       problem_id: props.problem_id,
       status: new_status
@@ -59,6 +66,11 @@ const StatusElement = props => {
   };
 
   const handleReadChange = async new_read => {
+    ReactGa.event({
+      category: "detailview",
+      action: "read"
+    });
+
     const payload = {
       problem_id: props.problem_id,
       read: new_read

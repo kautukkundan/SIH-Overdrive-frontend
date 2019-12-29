@@ -7,6 +7,8 @@ import { isLoggedIn } from "../../services/authService";
 import LoginBox from "./login-box";
 import { Icon } from "semantic-ui-react";
 
+import ReactGa from "react-ga";
+
 const Login = () => {
   const history = useHistory();
   useEffect(() => {
@@ -15,6 +17,10 @@ const Login = () => {
       history.push("/");
     }
   }, [history]);
+
+  useEffect(() => {
+    ReactGa.pageview("/login");
+  }, []);
 
   return (
     <div className="login-body">

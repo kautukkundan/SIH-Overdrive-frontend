@@ -9,6 +9,8 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 import { updateDynamicProblemsSingle } from "../../../services/problemStatementService";
 import { toast } from "react-toastify";
 
+import ReactGa from "react-ga";
+
 const ProblemStatementsTable = () => {
   let history = useHistory();
   const problemStatementsStatic = useStoreState(state => state.problems.static);
@@ -22,6 +24,10 @@ const ProblemStatementsTable = () => {
   const thisTeam = useStoreState(state => state.team.current_team);
 
   const handleStatusChange = async (problem_id, new_status) => {
+    ReactGa.event({
+      category: "problem table",
+      action: new_status
+    });
     const payload = {
       problem_id: problem_id,
       status: new_status
@@ -40,6 +46,10 @@ const ProblemStatementsTable = () => {
   };
 
   const handleReadChange = async (problem_id, new_read) => {
+    ReactGa.event({
+      category: "problem table",
+      action: "read"
+    });
     const payload = {
       problem_id: problem_id,
       read: new_read
@@ -204,7 +214,13 @@ const ProblemStatementsTable = () => {
           },
           Filter: ({ filter, onChange }) => (
             <select
-              onChange={event => onChange(event.target.value)}
+              onChange={event => {
+                ReactGa.event({
+                  category: "problem table",
+                  action: "category dropdown " + event.target.value
+                });
+                onChange(event.target.value);
+              }}
               style={{ width: "100%" }}
               value={filter ? filter.value : "all"}
             >
@@ -237,7 +253,13 @@ const ProblemStatementsTable = () => {
           },
           Filter: ({ filter, onChange }) => (
             <select
-              onChange={event => onChange(event.target.value)}
+              onChange={event => {
+                ReactGa.event({
+                  category: "problem table",
+                  action: "domain dropdown " + event.target.value
+                });
+                onChange(event.target.value);
+              }}
               style={{ width: "100%" }}
               value={filter ? filter.value : "all"}
             >

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import ReactGa from "react-ga";
 
 const NotFound = () => {
+  useEffect(() => {
+    ReactGa.pageview("/404");
+  }, []);
+
   return (
     <div
       className="not-found"

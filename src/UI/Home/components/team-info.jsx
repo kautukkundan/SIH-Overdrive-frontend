@@ -8,6 +8,8 @@ import { Dropdown, Loader, Dimmer } from "semantic-ui-react";
 import { getDynamicProblems } from "../../../services/problemStatementService";
 import WelcomeModal from "./welcome-modal";
 
+import ReactGa from "react-ga";
+
 const TeamInfo = () => {
   const teams = useStoreState(state => state.team.all_teams);
   const setCurrentTeam = useStoreActions(action => action.team.setCurrentTeam);
@@ -91,6 +93,10 @@ const TeamInfo = () => {
                 options={options}
                 defaultValue={options && options.slice(-1)[0].value}
                 onChange={(event, data) => {
+                  ReactGa.event({
+                    category: "team",
+                    action: "change team"
+                  });
                   changeTeam(
                     teams.filter(item => item.team.id === data.value)[0].team
                   );

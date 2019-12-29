@@ -2,6 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Popup, Icon } from "semantic-ui-react";
 
+import ReactGa from "react-ga";
+
 const ProblemNavigation = props => {
   const history = useHistory();
 
@@ -29,7 +31,13 @@ const ProblemNavigation = props => {
           <Icon
             name="caret left"
             size="big"
-            onClick={() => changeProblem("prev")}
+            onClick={() => {
+              ReactGa.event({
+                category: "button",
+                action: "previous navigation"
+              });
+              changeProblem("prev");
+            }}
           />
         }
       />
@@ -40,7 +48,17 @@ const ProblemNavigation = props => {
         }}
         content="All"
         trigger={
-          <Icon name="home" size="big" onClick={() => history.push("/")} />
+          <Icon
+            name="home"
+            size="big"
+            onClick={() => {
+              ReactGa.event({
+                category: "button",
+                action: "home navigation"
+              });
+              history.push("/");
+            }}
+          />
         }
       />
 
@@ -54,7 +72,13 @@ const ProblemNavigation = props => {
           <Icon
             name="caret right"
             size="big"
-            onClick={() => changeProblem("next")}
+            onClick={() => {
+              ReactGa.event({
+                category: "button",
+                action: "next navigation"
+              });
+              changeProblem("next");
+            }}
           />
         }
       />

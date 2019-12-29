@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { createTeam } from "../../../services/teamService";
+import ReactGa from "react-ga";
 
 import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
 
@@ -26,6 +27,10 @@ const CreateTeam = () => {
   };
 
   const handleSubmit = () => {
+    ReactGa.event({
+      category: "button",
+      action: "create team request"
+    });
     if (teamName.length < 5) {
       swal(
         "Incorrect Team Name",
@@ -42,7 +47,16 @@ const CreateTeam = () => {
       onClose={() => setOpen(false)}
       open={open}
       trigger={
-        <Button inverted onClick={() => setOpen(true)}>
+        <Button
+          inverted
+          onClick={() => {
+            ReactGa.event({
+              category: "modal",
+              action: "new team modal"
+            });
+            setOpen(true);
+          }}
+        >
           <Icon name="plus" />
           NEW TEAM
         </Button>

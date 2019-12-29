@@ -6,6 +6,8 @@ import { updateDynamicProblemsSingle } from "../../../services/problemStatementS
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { toast } from "react-toastify";
 
+import ReactGa from "react-ga";
+
 const FileLinksModal = props => {
   const [docLink, setDocLink] = useState("");
   const [pptLink, setPptLink] = useState("");
@@ -21,6 +23,11 @@ const FileLinksModal = props => {
   }, [props]);
 
   const updateLinks = async () => {
+    ReactGa.event({
+      category: "button",
+      action: "file added"
+    });
+
     setLoading(true);
     const links = {
       presentation: pptLink,

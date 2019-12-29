@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./notifications.css";
 
 import Notification from "./components/notification";
@@ -6,11 +6,17 @@ import { useHistory } from "react-router-dom";
 import { useStoreState } from "easy-peasy";
 import { Icon } from "semantic-ui-react";
 
+import ReactGa from "react-ga";
+
 const Notifications = () => {
   const history = useHistory();
 
   const allNotifications = useStoreState(state => state.notifications.all);
   const current_team = useStoreState(state => state.team.current_team);
+
+  useEffect(() => {
+    ReactGa.pageview("/notifications");
+  }, []);
 
   return (
     <div className="notifications-body">

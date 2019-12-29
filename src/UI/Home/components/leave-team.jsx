@@ -4,11 +4,16 @@ import { useStoreState } from "easy-peasy";
 import { leaveTeam } from "../../../services/teamService";
 
 import { Icon, Popup } from "semantic-ui-react";
+import ReactGa from "react-ga";
 
 const LeaveTeam = () => {
   const currentTeam = useStoreState(state => state.team.current_team);
 
   const handleExit = () => {
+    ReactGa.event({
+      category: "button",
+      action: "exit team"
+    });
     swal({
       title: "Exit Team",
       text: "Are you sure you want to exit this team?",

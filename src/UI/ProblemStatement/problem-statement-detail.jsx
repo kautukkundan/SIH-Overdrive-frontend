@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./details.css";
 import { useParams } from "react-router";
 
@@ -10,6 +10,7 @@ import { useStoreState } from "easy-peasy";
 import NotFound from "../NotFound/notfound";
 import StatusElement from "./components/statuses";
 import FileLinksModal from "./components/files-links-modal";
+import ReactGa from "react-ga";
 
 const ProblemStatementDetail = ({ match, location }) => {
   let { id } = useParams();
@@ -26,6 +27,10 @@ const ProblemStatementDetail = ({ match, location }) => {
   const thisProblemDynamic = problemStatementsDynamic.filter(item => {
     return item.problem_statement === parseInt(id);
   });
+
+  useEffect(() => {
+    ReactGa.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   if (id > problemStatementsStatic.length) {
     return <NotFound />;
@@ -68,6 +73,12 @@ const ProblemStatementDetail = ({ match, location }) => {
                 href={thisProblem[0].youtube}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  ReactGa.event({
+                    category: "button",
+                    action: "youtube link"
+                  });
+                }}
               >
                 {thisProblem[0].youtube}
               </a>
