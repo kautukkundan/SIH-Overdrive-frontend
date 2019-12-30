@@ -59,8 +59,8 @@ const Login = () => {
         </div>
         <div className="footer">
           Made with <Icon name="heart" />
-          by <a href="https://github.com/GauravJain98">Gaurav Jain</a> &{" "}
-          <a href="https://github.com/kautukkundan">Kautuk Kundan</a>
+          by <a href="https://twitter.com/gaurav_jain98">Gaurav Jain</a> &{" "}
+          <a href="https://twitter.com/Kautukkundan">Kautuk Kundan</a>
         </div>
       </div>
     </div>
