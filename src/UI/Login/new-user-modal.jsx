@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import swal from "sweetalert";
 
 import { Modal, Form, Button, Select } from "semantic-ui-react";
-import { registerNewUser } from "../../services/authService";
+import { registerNewUser, login } from "../../services/authService";
 import ReactGa from "react-ga";
+import { useStoreActions } from "easy-peasy";
+import { useHistory } from "react-router-dom";
 
 const NewUserModal = () => {
   const [open, setOpen] = useState(false);
@@ -15,6 +17,9 @@ const NewUserModal = () => {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
+
+  const setToken = useStoreActions(action => action.user.setToken);
+  const history = useHistory();
 
   const handleSubmit = async () => {
     ReactGa.event({
@@ -42,7 +47,23 @@ const NewUserModal = () => {
         password
       );
       if (response.status === 201) {
-        swal("Account Created", "Login to Continue.", "success");
+        swal("Account Created", "Press OK to Login.", "success").then(
+          async () => {
+            const response = await login(email, password);
+            if (response.status === 200) {
+              setToken(response.data.token);
+              history.push("/");
+            } else if (
+              response.status === 400 &&
+              response.data.non_field_errors[0] ===
+                "Unable to log in with provided credentials."
+            ) {
+              swal("Error", "Email or Password seems incorrect!", "error");
+            } else {
+              swal("Oops!", "Something went wrong! Please Retry", "error");
+            }
+          }
+        );
         setOpen(false);
       } else if (
         response.status === 400 &&
