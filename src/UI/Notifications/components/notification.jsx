@@ -3,20 +3,52 @@ import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
 import {
   acceptNotification,
-  rejectNotification
+  rejectNotification,
+  getNotifications
 } from "../../../services/notificationService";
 import swal from "sweetalert";
+import { getTeamMates } from "../../../services/teamService";
+import { useStoreActions, useStoreState } from "easy-peasy";
 
 const Notification = props => {
   const [loadingA, setLoadingA] = useState(false);
   const [loadingB, setLoadingB] = useState(false);
+
+  const setAllTeamMates = useStoreActions(
+    action => action.team.setAllTeamMates
+  );
+  const currentTeam = useStoreState(state => state.team.current_team);
+  const setNotifications = useStoreActions(
+    action => action.notifications.setNotifications
+  );
+
+  const getAllNotifications = async teamId => {
+    const response = await getNotifications(teamId);
+    if (response.status === 200) {
+      setNotifications(response.data);
+    } else if (response.status === 401) {
+      setNotifications(null);
+    } else {
+      swal("Error", "Unable to fetch Notifications", "error");
+    }
+  };
+
+  const getAllTeamMates = async teamId => {
+    const response = await getTeamMates(teamId);
+    if (response.status === 200) {
+      setAllTeamMates(response.data);
+    } else {
+      alert("Error", "Unable to fetch Teams", "error");
+    }
+  };
 
   const acceptMember = async () => {
     setLoadingA(true);
     const response = await acceptNotification(props.notification_id);
     if (response.status === 200) {
       swal("Accepted", response.data, "success").then(() => {
-        window.location.reload();
+        getAllTeamMates(currentTeam.id);
+        getAllNotifications(currentTeam.id);
       });
     } else {
       swal("Oops!", "Something went wrong! please try again", "error");
