@@ -21,7 +21,8 @@ import { getNotifications } from "../../services/notificationService";
 import { getTeams, getTeamMates } from "../../services/teamService";
 import {
   getStaticProblems,
-  getDynamicProblems
+  getDynamicProblems,
+  getProblemCount
 } from "../../services/problemStatementService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -67,7 +68,10 @@ const Home = () => {
 
   const getAllStaticProblems = async () => {
     let static_problems = localStorage.static_problems;
-    if (!static_problems) {
+    const count = await getProblemCount();
+
+    if (!static_problems || JSON.parse(static_problems).length !== count.data) {
+      console.log("called");
       const response = await getStaticProblems();
       if (response.status === 200) {
         static_problems = JSON.stringify(response.data);
