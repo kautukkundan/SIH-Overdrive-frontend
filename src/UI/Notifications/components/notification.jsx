@@ -59,7 +59,7 @@ const Notification = props => {
   const rejectMember = async () => {
     setLoadingB(true);
     await rejectNotification(props.notification_id);
-    window.location.reload();
+    getAllNotifications(currentTeam.id);
     setLoadingB(false);
   };
 
