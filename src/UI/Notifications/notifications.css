@@ -39,3 +39,43 @@
   display: block;
   font-size: 120%;
 }
+
+@media only screen and (max-width: 500px) {
+  .notification {
+    width: 90%;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  .notifications-body > .title {
+    font-size: 120%;
+  }
+
+  .notification > .info > .name {
+    font-size: 120%;
+    margin-right: 10px;
+    line-height: 120%;
+  }
+
+  .notification > .info > .name {
+    font-size: 150%;
+    margin-right: 10px;
+    line-height: 150%;
+  }
+
+  .notification > .info > .email {
+    font-size: 180%;
+    margin-right: 10px;
+    line-height: 180%;
+    opacity: 0.5;
+  }
+
+  .notification > .info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}

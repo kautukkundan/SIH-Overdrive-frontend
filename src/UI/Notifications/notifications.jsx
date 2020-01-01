@@ -20,6 +20,11 @@ const Notifications = () => {
 
   return (
     <div className="notifications-body">
+      <span className="disclaimer">
+        Not optimized for mobile. Switch to a Laptop/Desktop for Best Experience
+        <br />
+        <br />
+      </span>
       <div className="title">
         <Icon name="bell" /> Notifications for {current_team.name} |{" "}
         <span
