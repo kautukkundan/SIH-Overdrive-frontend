@@ -1,6 +1,15 @@
 import React from "react";
+import ReactGa from "react-ga";
+import { useEffect } from "react";
 
 const MobileHome = () => {
+  useEffect(() => {
+    ReactGa.event({
+      category: "mobile",
+      action: "opened mobile view"
+    });
+  }, []);
+
   return (
     <div
       className="home"
