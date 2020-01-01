@@ -123,3 +123,84 @@
 .small-modal {
   width: 50vw !important;
 }
+
+@media only screen and (max-width: 500px) {
+  .home-body {
+    height: 100%;
+  }
+
+  .home-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-body > .left {
+    width: 100vw;
+    padding: 30px 0px;
+    overflow-y: scroll;
+  }
+
+  .home-body > .right {
+    width: 100vw;
+    padding: 0;
+  }
+
+  .team-member-info {
+    height: 100%;
+  }
+
+  .info {
+    display: flex;
+    height: 100%;
+    padding: 10px;
+    color: white;
+  }
+
+  .small-modal {
+    width: 90% !important;
+  }
+
+  .button-group {
+    width: 50vw !important;
+  }
+
+  .table-status {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .filter-button {
+    width: 32vw;
+    height: 50px;
+    padding: 0;
+  }
+
+  .filter-button-read {
+    width: 48vw;
+    height: 50px;
+    padding: 0;
+  }
+
+  .filter-button-reject {
+    width: 96vw;
+    height: 50px;
+    padding: 0;
+  }
+
+  .filter-button > * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .button-group {
+    margin-bottom: 10px !important;
+  }
+
+  .home-body > .left::-webkit-scrollbar {
+    display: none;
+  }
+
+  .button-group-container {
+    padding: 2vw;
+  }
+}
