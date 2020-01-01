@@ -38,6 +38,11 @@ const ProblemStatementDetail = ({ match, location }) => {
 
   return thisProblem.length ? (
     <div className="problem-statement-details-body">
+      <span className="disclaimer">
+        Not optimized for mobile. Switch to a Laptop/Desktop for Best Experience
+        <br />
+        <br />
+      </span>
       <div className="meta">
         <div className="image">
           <img src={thisProblem[0].img} height="50px" alt="" />
@@ -108,7 +113,7 @@ const ProblemStatementDetail = ({ match, location }) => {
             <pre className="unformatted">{thisProblem[0].description}</pre>
           </div>
         </div>
-
+        <br />
         <div className="column-2">
           <StatusElement problem_id={parseInt(id)} />
           <br />
