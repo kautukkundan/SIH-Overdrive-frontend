@@ -124,6 +124,12 @@
   width: 50vw !important;
 }
 
+.disclaimer {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
 @media only screen and (max-width: 500px) {
   .home-body {
     height: 100%;
@@ -202,5 +208,13 @@
 
   .button-group-container {
     padding: 2vw;
+  }
+
+  .disclaimer {
+    display: block;
+    padding: 0 2vw 2vw 2vw;
+    font-size: 120%;
+    margin: 0;
+    text-align: center;
   }
 }
