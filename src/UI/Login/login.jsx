@@ -28,13 +28,14 @@ const Login = () => {
         <div className="hero-image">
           <a href="https://www.freepik.com/free-photos-vectors/puzzle">
             <img
+              className="hero"
               src={process.env.PUBLIC_URL + "/hero-pic.png"}
-              height="500px"
               title="Puzzle vector created by slidesgo - www.freepik.com"
               alt=""
             />
           </a>
         </div>
+        <br />
         <div className="app-title">
           SIH Overdrive <Icon name="dashboard" />
         </div>
@@ -43,7 +44,7 @@ const Login = () => {
         </span>
       </div>
       <div className="left">
-        <div className="title" style={{ fontSize: "150%" }}>
+        <div className="title">
           IDEATE &nbsp;|&nbsp; SHARE &nbsp;|&nbsp; COLLABORATE
         </div>
         <div className="login-box">
@@ -56,6 +57,8 @@ const Login = () => {
             </p>
           </div>
           <LoginBox />
+          <br />
+          <br />
         </div>
         <div className="footer">
           Made with <Icon name="heart" />
