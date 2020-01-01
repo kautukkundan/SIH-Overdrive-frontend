@@ -7,7 +7,7 @@ import globalStore from "./stores/globalStore";
 import Login from "./UI/Login/login";
 import Logout from "./UI/Login/logout";
 import Home from "./UI/Home/home";
-import MobileHome from "./UI/Home/mobile-home";
+// import MobileHome from "./UI/Home/mobile-home";
 
 import ReactGa from "react-ga";
 
@@ -16,9 +16,9 @@ ReactGa.initialize(process.env.REACT_APP_GA_ID);
 const store = createStore(globalStore);
 
 function App() {
-  if (window.innerWidth < 500) {
-    return <MobileHome />;
-  }
+  // if (window.innerWidth < 500) {
+  //   return <MobileHome />;
+  // }
   return (
     <StoreProvider store={store}>
       <BrowserRouter>

@@ -25,10 +25,15 @@ const FilterGroup = () => {
   ).length;
 
   return (
-    <div>
-      <Button.Group style={{ marginRight: "10px" }} compact>
+    <div className="button-group-container">
+      <Button.Group
+        style={{ marginRight: "10px" }}
+        compact
+        className="button-group"
+      >
         <Button
           icon
+          className="filter-button-read"
           labelPosition="left"
           size="small"
           color="blue"
@@ -42,6 +47,7 @@ const FilterGroup = () => {
         </Button>
         <Button
           icon
+          className="filter-button-read"
           labelPosition="left"
           size="small"
           color="teal"
@@ -60,9 +66,14 @@ const FilterGroup = () => {
           </span>
         </Button>
       </Button.Group>
-      <Button.Group style={{ marginRight: "10px" }} compact>
+      <Button.Group
+        style={{ marginRight: "10px" }}
+        compact
+        className="button-group"
+      >
         <Button
           icon
+          className="filter-button"
           labelPosition="left"
           size="small"
           color="red"
@@ -82,6 +93,7 @@ const FilterGroup = () => {
         </Button>
         <Button
           icon
+          className="filter-button"
           labelPosition="left"
           size="small"
           color="yellow"
@@ -101,6 +113,7 @@ const FilterGroup = () => {
         </Button>
         <Button
           icon
+          className="filter-button"
           labelPosition="left"
           size="small"
           color="green"
@@ -119,9 +132,10 @@ const FilterGroup = () => {
           </span>
         </Button>
       </Button.Group>
-      <Button.Group compact>
+      <Button.Group compact className="button-group">
         <Button
           size="small"
+          className="filter-button-reject"
           onClick={() => {
             ReactGa.event({
               category: "filter",

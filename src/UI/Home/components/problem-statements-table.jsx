@@ -280,6 +280,7 @@ const ProblemStatementsTable = () => {
           Header: "Status",
           accessor: "status",
           width: 120,
+          className: "table-status",
           filterable: false,
           Cell: props => (
             <div>

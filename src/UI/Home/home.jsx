@@ -172,6 +172,10 @@ const Home = () => {
       <div className="left">
         <Switch>
           <Route exact path="/">
+            <span className="disclaimer">
+              Not optimized for mobile. Switch to a Laptop/Desktop for Best
+              Experience
+            </span>
             <FilterGroup />
             <br />
             <ProblemStatementsTable />
