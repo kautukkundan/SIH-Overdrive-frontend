@@ -61,17 +61,19 @@ const MyFeed = props => {
       action: "comment created"
     });
 
-    addCommentLocal();
-    setNewComment("");
-    const response = await postComments(
-      thisTeam.id,
-      props.problem_id,
-      newComment
-    );
-    if (response.status !== 201) {
-      toast.error("Unable to Post Comment!!", {
-        position: toast.POSITION.TOP_RIGHT
-      });
+    if (newComment.trim()) {
+      addCommentLocal();
+      setNewComment("");
+      const response = await postComments(
+        thisTeam.id,
+        props.problem_id,
+        newComment
+      );
+      if (response.status !== 201) {
+        toast.error("Unable to Post Comment!!", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      }
     }
   };
 
