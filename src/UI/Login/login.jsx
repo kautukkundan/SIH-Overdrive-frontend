@@ -8,6 +8,7 @@ import LoginBox from "./login-box";
 import { Icon } from "semantic-ui-react";
 
 import ReactGa from "react-ga";
+import Helmet from "react-helmet";
 
 const Login = () => {
   const history = useHistory();
@@ -24,6 +25,13 @@ const Login = () => {
 
   return (
     <div className="login-body">
+      <Helmet>
+        <title>SIH Overdrive </title>
+        <meta
+          name="description"
+          content="The best Companion for Smart India Hackathon 2020. Manage your team, view problem statements. Track progress and collaborate with your team"
+        />
+      </Helmet>
       <div className="right">
         <div className="hero-image">
           <a href="https://www.freepik.com/free-photos-vectors/puzzle">
