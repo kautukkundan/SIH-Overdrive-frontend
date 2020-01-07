@@ -11,6 +11,7 @@ import NotFound from "../NotFound/notfound";
 import StatusElement from "./components/statuses";
 import FileLinksModal from "./components/files-links-modal";
 import ReactGa from "react-ga";
+import Helmet from "react-helmet";
 
 const ProblemStatementDetail = ({ match, location }) => {
   let { id } = useParams();
@@ -38,6 +39,10 @@ const ProblemStatementDetail = ({ match, location }) => {
 
   return thisProblem.length ? (
     <div className="problem-statement-details-body">
+      <Helmet>
+        <title>SIH Overdrive | {thisProblem[0].organization}</title>
+        <meta name="description" content={thisProblem[0].title} />
+      </Helmet>
       <span className="disclaimer">
         Not optimized for mobile. Switch to a Laptop/Desktop for Best Experience
         <br />
