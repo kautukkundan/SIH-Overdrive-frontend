@@ -26,6 +26,7 @@ import {
 } from "../../services/problemStatementService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Helmet from "react-helmet";
 toast.configure();
 
 const Home = () => {
@@ -156,6 +157,13 @@ const Home = () => {
     </Dimmer>
   ) : (
     <div className="home-body">
+      <Helmet>
+        <title>SIH Overdrive </title>
+        <meta
+          name="description"
+          content="The best Companion for Smart India Hackathon 2020. Manage your team, view problem statements. Track progress and collaborate with your team"
+        />
+      </Helmet>
       <div className="right">
         <div className="top">
           <TeamInfo />
