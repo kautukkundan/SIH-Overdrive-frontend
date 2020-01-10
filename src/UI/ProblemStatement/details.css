@@ -90,6 +90,10 @@
   font-size: 150%;
 }
 
+.comment-line {
+  white-space: pre-wrap !important;
+}
+
 @media only screen and (max-width: 500px) {
   .two-column {
     display: flex;
