@@ -118,7 +118,7 @@ const MyFeed = props => {
                       {timeAgo.format(new Date(item.updated_at))}
                     </Feed.Date>
                   </Feed.Summary>
-                  <Feed.Extra text>
+                  <Feed.Extra text className="comment-line">
                     <Linkify componentDecorator={componentDecorator}>
                       {item.comment}
                     </Linkify>
