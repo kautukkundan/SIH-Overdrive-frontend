@@ -61,17 +61,19 @@ const MyFeed = props => {
       action: "comment created"
     });
 
-    addCommentLocal();
-    setNewComment("");
-    const response = await postComments(
-      thisTeam.id,
-      props.problem_id,
-      newComment
-    );
-    if (response.status !== 201) {
-      toast.error("Unable to Post Comment!!", {
-        position: toast.POSITION.TOP_RIGHT
-      });
+    if (newComment.trim()) {
+      addCommentLocal();
+      setNewComment("");
+      const response = await postComments(
+        thisTeam.id,
+        props.problem_id,
+        newComment
+      );
+      if (response.status !== 201) {
+        toast.error("Unable to Post Comment!!", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      }
     }
   };
 
@@ -116,7 +118,7 @@ const MyFeed = props => {
                       {timeAgo.format(new Date(item.updated_at))}
                     </Feed.Date>
                   </Feed.Summary>
-                  <Feed.Extra text>
+                  <Feed.Extra text className="comment-line">
                     <Linkify componentDecorator={componentDecorator}>
                       {item.comment}
                     </Linkify>

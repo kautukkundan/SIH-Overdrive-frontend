@@ -118,16 +118,19 @@ const TeamInfo = () => {
             </strong>
             <br />
             <br />
-            <p>
-              1. Problem Statements will be visible as soon as you create or
-              join a new team.
-            </p>
-            <p>
-              2. You can start working on problem statements (mark progress,
-              add/remove comments) right away
-            </p>
-            <p>3. You can work solo and add team members later</p>
-            <p>4. Click on New Team/Join Team :D</p>
+            <div className="reading-text">
+              <p>
+                1. Problem Statements will be visible as soon as you create or
+                join a new team.
+              </p>
+              <p>
+                2. You can start working on problem statements (mark progress,
+                add/remove comments) right away
+              </p>
+              <p>3. You can work solo and add team members later</p>
+              <p>4. Click on New Team/Join Team :D</p>
+            </div>
+            <br />
           </div>
         </div>
       )}
