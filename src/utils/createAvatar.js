@@ -6,7 +6,7 @@ const M = [
   "joe.jpg",
   "justen.jpg",
   "mark.png",
-  "matt.png",
+  "matt.jpg",
   "matthew.png",
   "nom.jpg",
   "steve.jpg",
